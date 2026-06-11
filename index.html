@@ -1,0 +1,1981 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preguntas Sankofa · Foros Latinoamericanos de Cine e Impacto Social</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --negro: #0f0f0f;
+    --blanco: #f7f5f0;
+    --amarillo: #E8B84B;
+    /* Cat D */
+    --nar: #7C3AED; --dis: #0F766E; --imp: #C2410C;
+    --eco: #1D4ED8; --com: #B91C1C; --pod: #92400E; --dud: #374151;
+    /* Cat E */
+    --pra: #065F46; --ide: #5B21B6; --aut: #7F1D1D;
+    --con: #1E3A5F; --rel: #3D1F00; --ima: #1A3A2A;
+    /* Sankofa */
+    --sk-p: #d97706; --sk-l: #2563a8; --sk-a: #374151;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--negro);
+    color: var(--blanco);
+    padding: 0 0 5rem;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 0;
+    border-bottom: 1px solid #222;
+    padding-bottom: 1.8rem;
+  }
+
+  .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amarillo);
+    margin-bottom: 0.5rem;
+  }
+
+  h1 {
+    font-size: clamp(1.3rem, 2.2vw, 2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.3rem;
+  }
+
+  .subtitle {
+    font-size: 0.82rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── LEYENDAS ── */
+  .leyendas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem 2.5rem;
+    margin-top: 0.8rem;
+  }
+
+  .leyenda-grupo { display: flex; flex-direction: column; gap: 0.35rem; }
+
+  .leyenda-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #444;
+    margin-bottom: 0.1rem;
+  }
+
+  .leyenda-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+
+  .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  /* D tags */
+  .td-nar { background: var(--nar); }
+  .td-dis { background: var(--dis); }
+  .td-imp { background: var(--imp); }
+  .td-eco { background: var(--eco); }
+  .td-com { background: var(--com); }
+  .td-pod { background: var(--pod); }
+  .td-dud { background: var(--dud); }
+
+  /* E tags */
+  .te-pra { background: var(--pra); }
+  .te-ide { background: var(--ide); }
+  .te-aut { background: var(--aut); }
+  .te-con { background: var(--con); }
+  .te-rel { background: var(--rel); }
+  .te-ima { background: var(--ima); }
+
+  /* Sankofa tags */
+  .sk { font-family: 'Space Mono', monospace; font-size: 0.58rem; font-weight: 700; padding: 0.22rem 0.6rem; border-radius: 2px; display: inline-block; letter-spacing: 0.06em; text-transform: uppercase; }
+  .sk-p { background: #2a1f00; color: var(--amarillo); border: 1px solid #d9770644; }
+  .sk-l { background: #0a1628; color: #60a5fa; border: 1px solid #2563a844; }
+  .sk-a { background: #1a1a1a; color: #666; border: 1px solid #33333388; }
+
+  /* ── CONTROLES ── */
+  .controles-wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.2rem 1.5rem 0;
+  }
+
+  .controles-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .ctrl-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #444;
+    margin-right: 0.2rem;
+    white-space: nowrap;
+  }
+
+  .sep { width: 1px; height: 14px; background: #2a2a2a; margin: 0 0.3rem; }
+
+  .btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.26rem 0.65rem;
+    border: 1px solid #2a2a2a;
+    background: transparent;
+    color: #555;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.12s;
+    white-space: nowrap;
+  }
+
+  .btn:hover, .btn.on {
+    background: var(--blanco);
+    color: var(--negro);
+    border-color: var(--blanco);
+  }
+
+  .contador {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: #333;
+    margin-left: auto;
+  }
+
+  /* ── TABLA ── */
+  .wrap {
+    max-width: 1400px;
+    margin: 1rem auto 0;
+    padding: 0 1.5rem;
+    overflow-x: auto;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+
+  thead tr { border-bottom: 1px solid #222; }
+
+  th {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.54rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #3a3a3a;
+    text-align: left;
+    padding: 0.65rem 0.8rem;
+    white-space: nowrap;
+  }
+
+  /* Anchos columnas */
+  th:nth-child(1) { width: 3%; }   /* # */
+  th:nth-child(2) { width: 5%; }   /* foro */
+  th:nth-child(3) { width: 30%; }  /* pregunta */
+  th:nth-child(4) { width: 13%; }  /* cat D */
+  th:nth-child(5) { width: 12%; }  /* intención */
+  th:nth-child(6) { width: 10%; }  /* relacionadas */
+  th:nth-child(7) { width: 8%; }   /* sankofa */
+  th:nth-child(8) { width: 19%; }  /* justificación */
+
+  tbody tr {
+    border-bottom: 1px solid #161616;
+    transition: background 0.1s;
+  }
+
+  tbody tr:hover { background: #131313; }
+
+  /* Highlight de fila referenciada */
+  tbody tr.highlighted {
+    background: #1c1600;
+    outline: 1px solid var(--amarillo);
+    outline-offset: -1px;
+  }
+
+  td { padding: 0.8rem; vertical-align: top; line-height: 1.5; }
+
+  .td-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.56rem;
+    color: #333;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .fb {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.54rem;
+    font-weight: 700;
+    padding: 0.15rem 0.4rem;
+    border-radius: 2px;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .f1 { background: #1c1800; color: #E8B84B; border: 1px solid #4a3b0033; }
+  .f2 { background: #001a1a; color: #4ecdc4; border: 1px solid #4ecdc422; }
+  .f3 { background: #130e1f; color: #a78bfa; border: 1px solid #a78bfa22; }
+
+  .td-q { color: var(--blanco); }
+
+  .pill {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.52rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.18rem 0.45rem;
+    border-radius: 2px;
+    font-weight: 700;
+    color: #fff;
+    white-space: normal;
+    line-height: 1.6;
+  }
+
+  /* Chips de filas relacionadas */
+  .td-rel { vertical-align: middle; }
+
+  .rel-chip {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.54rem;
+    padding: 0.15rem 0.4rem;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #888;
+    border-radius: 2px;
+    cursor: pointer;
+    margin: 0.1rem 0.15rem 0.1rem 0;
+    display: inline-block;
+    transition: all 0.12s;
+  }
+
+  .rel-chip:hover {
+    background: var(--amarillo);
+    color: var(--negro);
+    border-color: var(--amarillo);
+  }
+
+  .rel-empty { color: #2a2a2a; font-size: 0.7rem; }
+
+  .td-j {
+    color: #666;
+    font-size: 0.76rem;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  tr.hide { display: none; }
+
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <div class="eyebrow">Sistematización Sankofa · I, II y III Foro</div>
+  <h1>Preguntas de los Foros Latinoamericanos de Cine e Impacto Social</h1>
+  <p class="subtitle">Brasil 2022 · México 2023 · Colombia 2024</p>
+
+  <div class="leyendas">
+    <div class="leyenda-grupo">
+      <div class="leyenda-label">Categoría temática</div>
+      <div class="leyenda-tags">
+        <span class="tag td-nar">Narrativas y representación</span>
+        <span class="tag td-dis">Distribución y/o circulación</span>
+        <span class="tag td-imp">Impacto y evaluación</span>
+        <span class="tag td-eco">Ecosistema y sostenibilidad</span>
+        <span class="tag td-com">Comunidades, ética y cuidado</span>
+        <span class="tag td-pod">Poder y decolonialidad</span>
+        <span class="tag td-dud">Duda / inclasificable</span>
+      </div>
+    </div>
+    <div class="leyenda-grupo">
+      <div class="leyenda-label">Intención</div>
+      <div class="leyenda-tags">
+        <span class="tag te-pra">Prácticas, acción</span>
+        <span class="tag te-ide">Identidad, sentido</span>
+        <span class="tag te-aut">Autocrítica, revisión</span>
+        <span class="tag te-con">Contrahegemónicas</span>
+        <span class="tag te-rel">Relacionales, cuidado</span>
+        <span class="tag te-ima">Imaginación o futuros</span>
+      </div>
+    </div>
+    <div class="leyenda-grupo">
+      <div class="leyenda-label">Sankofa</div>
+      <div class="leyenda-tags">
+        <span class="sk sk-p">Persistente</span>
+        <span class="sk sk-l">Latente</span>
+        <span class="sk sk-a">Aislada</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="controles-wrap">
+  <div class="controles-row">
+    <span class="ctrl-label">Foro</span>
+    <button class="btn on" onclick="fil('foro','todos',this)">Todos</button>
+    <button class="btn" onclick="fil('foro','F1',this)">I · Brasil 2022</button>
+    <button class="btn" onclick="fil('foro','F2',this)">II · México 2023</button>
+    <button class="btn" onclick="fil('foro','F3',this)">III · Colombia 2024</button>
+    <div class="sep"></div>
+    <span class="ctrl-label">Sankofa</span>
+    <button class="btn on" onclick="fil('sk','todos',this)">Todas</button>
+    <button class="btn" onclick="fil('sk','persistente',this)">Persistentes</button>
+    <button class="btn" onclick="fil('sk','latente',this)">Latentes</button>
+    <button class="btn" onclick="fil('sk','aislada',this)">Aisladas</button>
+    <span class="contador" id="cnt">109 preguntas</span>
+  </div>
+  <div class="controles-row">
+    <span class="ctrl-label">Temática</span>
+    <button class="btn on" onclick="fil('catd','todos',this)">Todas</button>
+    <button class="btn" onclick="fil('catd','nar',this)">Narrativas</button>
+    <button class="btn" onclick="fil('catd','dis',this)">Distribución</button>
+    <button class="btn" onclick="fil('catd','imp',this)">Impacto</button>
+    <button class="btn" onclick="fil('catd','eco',this)">Ecosistema</button>
+    <button class="btn" onclick="fil('catd','com',this)">Comunidades</button>
+    <button class="btn" onclick="fil('catd','pod',this)">Poder</button>
+    <button class="btn" onclick="fil('catd','dud',this)">Duda</button>
+  </div>
+  <div class="controles-row">
+    <span class="ctrl-label">Intención</span>
+    <button class="btn on" onclick="fil('cate','todos',this)">Todas</button>
+    <button class="btn" onclick="fil('cate','pra',this)">Prácticas</button>
+    <button class="btn" onclick="fil('cate','ide',this)">Identidad</button>
+    <button class="btn" onclick="fil('cate','aut',this)">Autocrítica</button>
+    <button class="btn" onclick="fil('cate','con',this)">Contrahegemónicas</button>
+    <button class="btn" onclick="fil('cate','rel',this)">Relacionales</button>
+    <button class="btn" onclick="fil('cate','ima',this)">Imaginación</button>
+  </div>
+</div>
+
+<div class="wrap">
+<table id="tbl">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Foro</th>
+      <th>Pregunta</th>
+      <th>Temática</th>
+      <th>Intención</th>
+      <th>Relacionadas</th>
+      <th>Sankofa</th>
+      <th>Justificación</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr id="row-2" 
+        data-foro="F1" 
+        data-catd="eco" 
+        data-cate="ide"
+        data-sk="latente">
+      <td class="td-num">1</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Qué hace un productor de impacto y qué debería tener en cuenta?</td>
+      <td><span class="pill td-eco">Ecosistema y sostenibilidad</span></td>
+      <td><span class="pill te-ide">Identidad, sentido, posicionamiento</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(4)" title="Ir a fila 4">#4</button> <button class="rel-chip" onclick="scrollToRow(15)" title="Ir a fila 15">#15</button> <button class="rel-chip" onclick="scrollToRow(51)" title="Ir a fila 51">#51</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Pregunta fundacional sobre el rol y la formación del campo. Interroga quién sostiene este trabajo y qué condiciones necesita.</td>
+    </tr>
+    <tr id="row-3" 
+        data-foro="F1" 
+        data-catd="nar" 
+        data-cate="ide"
+        data-sk="persistente">
+      <td class="td-num">2</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿De dónde nacen nuestras historias y dónde deberían existir?</td>
+      <td><span class="pill td-nar">Narrativas y representación</span></td>
+      <td><span class="pill te-ide">Identidad, sentido, posicionamiento</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(21)" title="Ir a fila 21">#21</button> <button class="rel-chip" onclick="scrollToRow(31)" title="Ir a fila 31">#31</button> <button class="rel-chip" onclick="scrollToRow(104)" title="Ir a fila 104">#104</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Interroga el origen territorial y cultural de las historias y el lugar donde deberían vivir y circular.</td>
+    </tr>
+    <tr id="row-4" 
+        data-foro="F1" 
+        data-catd="eco" 
+        data-cate="ide"
+        data-sk="latente">
+      <td class="td-num">3</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿A qué desafíos nos estamos enfrentando como productores de impacto?</td>
+      <td><span class="pill td-eco">Ecosistema y sostenibilidad</span></td>
+      <td><span class="pill te-ide">Identidad, sentido, posicionamiento</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(2)" title="Ir a fila 2">#2</button> <button class="rel-chip" onclick="scrollToRow(15)" title="Ir a fila 15">#15</button> <button class="rel-chip" onclick="scrollToRow(51)" title="Ir a fila 51">#51</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Pregunta diagnóstica sobre los obstáculos estructurales, metodológicos y relacionales del campo.</td>
+    </tr>
+    <tr id="row-5" 
+        data-foro="F1" 
+        data-catd="nar" 
+        data-cate="pra"
+        data-sk="latente">
+      <td class="td-num">4</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Qué tan importante es definir los mensajes y las estrategias narrativas para el cambio social?</td>
+      <td><span class="pill td-nar">Narrativas y representación</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(7)" title="Ir a fila 7">#7</button> <button class="rel-chip" onclick="scrollToRow(70)" title="Ir a fila 70">#70</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Pregunta sobre la relación entre intencionalidad narrativa y eficacia del cambio social. Toca el diseño de mensajes y su vínculo con audiencias.</td>
+    </tr>
+    <tr id="row-6" 
+        data-foro="F1" 
+        data-catd="imp" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">5</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cómo evaluamos el impacto en las audiencias?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(9)" title="Ir a fila 9">#9</button> <button class="rel-chip" onclick="scrollToRow(12)" title="Ir a fila 12">#12</button> <button class="rel-chip" onclick="scrollToRow(19)" title="Ir a fila 19">#19</button> <button class="rel-chip" onclick="scrollToRow(23)" title="Ir a fila 23">#23</button> <button class="rel-chip" onclick="scrollToRow(55)" title="Ir a fila 55">#55</button> <button class="rel-chip" onclick="scrollToRow(58)" title="Ir a fila 58">#58</button> <button class="rel-chip" onclick="scrollToRow(59)" title="Ir a fila 59">#59</button> <button class="rel-chip" onclick="scrollToRow(60)" title="Ir a fila 60">#60</button> <button class="rel-chip" onclick="scrollToRow(90)" title="Ir a fila 90">#90</button> <button class="rel-chip" onclick="scrollToRow(91)" title="Ir a fila 91">#91</button> <button class="rel-chip" onclick="scrollToRow(92)" title="Ir a fila 92">#92</button> <button class="rel-chip" onclick="scrollToRow(93)" title="Ir a fila 93">#93</button> <button class="rel-chip" onclick="scrollToRow(95)" title="Ir a fila 95">#95</button> <button class="rel-chip" onclick="scrollToRow(96)" title="Ir a fila 96">#96</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta directa sobre metodologías de medición del cambio producido por las películas en quienes las ven.</td>
+    </tr>
+    <tr id="row-7" 
+        data-foro="F1" 
+        data-catd="nar" 
+        data-cate="pra"
+        data-sk="latente">
+      <td class="td-num">6</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cómo crear una comunicación más asertiva con las audiencias?</td>
+      <td><span class="pill td-nar">Narrativas y representación</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(5)" title="Ir a fila 5">#5</button> <button class="rel-chip" onclick="scrollToRow(70)" title="Ir a fila 70">#70</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Pregunta sobre cómo los mensajes de cambio social llegan efectivamente a públicos diversos, conectando diseño narrativo y recepción.</td>
+    </tr>
+    <tr id="row-8" 
+        data-foro="F1" 
+        data-catd="eco" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">7</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cómo nos articulamos con la academia?</td>
+      <td><span class="pill td-eco">Ecosistema y sostenibilidad</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(16)" title="Ir a fila 16">#16</button> <button class="rel-chip" onclick="scrollToRow(17)" title="Ir a fila 17">#17</button> <button class="rel-chip" onclick="scrollToRow(24)" title="Ir a fila 24">#24</button> <button class="rel-chip" onclick="scrollToRow(25)" title="Ir a fila 25">#25</button> <button class="rel-chip" onclick="scrollToRow(69)" title="Ir a fila 69">#69</button> <button class="rel-chip" onclick="scrollToRow(71)" title="Ir a fila 71">#71</button> <button class="rel-chip" onclick="scrollToRow(89)" title="Ir a fila 89">#89</button> <button class="rel-chip" onclick="scrollToRow(97)" title="Ir a fila 97">#97</button> <button class="rel-chip" onclick="scrollToRow(98)" title="Ir a fila 98">#98</button> <button class="rel-chip" onclick="scrollToRow(99)" title="Ir a fila 99">#99</button> <button class="rel-chip" onclick="scrollToRow(108)" title="Ir a fila 108">#108</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre los puentes entre el campo del impacto y la investigación académica como parte del ecosistema.</td>
+    </tr>
+    <tr id="row-9" 
+        data-foro="F1" 
+        data-catd="imp" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">8</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cuál es el impacto del trabajo que se está realizando?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(6)" title="Ir a fila 6">#6</button> <button class="rel-chip" onclick="scrollToRow(12)" title="Ir a fila 12">#12</button> <button class="rel-chip" onclick="scrollToRow(19)" title="Ir a fila 19">#19</button> <button class="rel-chip" onclick="scrollToRow(23)" title="Ir a fila 23">#23</button> <button class="rel-chip" onclick="scrollToRow(55)" title="Ir a fila 55">#55</button> <button class="rel-chip" onclick="scrollToRow(58)" title="Ir a fila 58">#58</button> <button class="rel-chip" onclick="scrollToRow(59)" title="Ir a fila 59">#59</button> <button class="rel-chip" onclick="scrollToRow(60)" title="Ir a fila 60">#60</button> <button class="rel-chip" onclick="scrollToRow(90)" title="Ir a fila 90">#90</button> <button class="rel-chip" onclick="scrollToRow(91)" title="Ir a fila 91">#91</button> <button class="rel-chip" onclick="scrollToRow(92)" title="Ir a fila 92">#92</button> <button class="rel-chip" onclick="scrollToRow(93)" title="Ir a fila 93">#93</button> <button class="rel-chip" onclick="scrollToRow(95)" title="Ir a fila 95">#95</button> <button class="rel-chip" onclick="scrollToRow(96)" title="Ir a fila 96">#96</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre la capacidad de demostrar resultados más allá de la intuición o los datos cuantitativos básicos.</td>
+    </tr>
+    <tr id="row-10" 
+        data-foro="F1" 
+        data-catd="nar" 
+        data-cate="aut"
+        data-sk="aislada">
+      <td class="td-num">9</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cuánto de lo que se comunica es entendido por el público?</td>
+      <td><span class="pill td-nar">Narrativas y representación</span></td>
+      <td><span class="pill te-aut">Autocrítica, revisión</span></td>
+      <td class="td-rel"><span class="rel-empty">—</span></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Interroga la brecha entre lo que se dice y lo que se recibe. Cuestiona la accesibilidad real de los mensajes de cambio social.</td>
+    </tr>
+    <tr id="row-11" 
+        data-foro="F1" 
+        data-catd="pod" 
+        data-cate="con"
+        data-sk="persistente">
+      <td class="td-num">10</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cómo se puede hablar de democracia con la violencia y las desigualdades que existen?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-con">Contrahegemónicas</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(33)" title="Ir a fila 33">#33</button> <button class="rel-chip" onclick="scrollToRow(34)" title="Ir a fila 34">#34</button> <button class="rel-chip" onclick="scrollToRow(35)" title="Ir a fila 35">#35</button> <button class="rel-chip" onclick="scrollToRow(50)" title="Ir a fila 50">#50</button> <button class="rel-chip" onclick="scrollToRow(52)" title="Ir a fila 52">#52</button> <button class="rel-chip" onclick="scrollToRow(63)" title="Ir a fila 63">#63</button> <button class="rel-chip" onclick="scrollToRow(75)" title="Ir a fila 75">#75</button> <button class="rel-chip" onclick="scrollToRow(80)" title="Ir a fila 80">#80</button> <button class="rel-chip" onclick="scrollToRow(83)" title="Ir a fila 83">#83</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Tensión sin resolución clara: toca el poder estructural, las condiciones narrativas y la ética del campo a la vez. No cabe limpiamente en una sola categoría.</td>
+    </tr>
+    <tr id="row-12" 
+        data-foro="F1" 
+        data-catd="imp" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">11</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cómo elaborar objetivos de impacto consistentes, articulados con la sociedad civil y conectados con el contexto sociopolítico?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(6)" title="Ir a fila 6">#6</button> <button class="rel-chip" onclick="scrollToRow(9)" title="Ir a fila 9">#9</button> <button class="rel-chip" onclick="scrollToRow(19)" title="Ir a fila 19">#19</button> <button class="rel-chip" onclick="scrollToRow(23)" title="Ir a fila 23">#23</button> <button class="rel-chip" onclick="scrollToRow(55)" title="Ir a fila 55">#55</button> <button class="rel-chip" onclick="scrollToRow(58)" title="Ir a fila 58">#58</button> <button class="rel-chip" onclick="scrollToRow(59)" title="Ir a fila 59">#59</button> <button class="rel-chip" onclick="scrollToRow(60)" title="Ir a fila 60">#60</button> <button class="rel-chip" onclick="scrollToRow(90)" title="Ir a fila 90">#90</button> <button class="rel-chip" onclick="scrollToRow(91)" title="Ir a fila 91">#91</button> <button class="rel-chip" onclick="scrollToRow(92)" title="Ir a fila 92">#92</button> <button class="rel-chip" onclick="scrollToRow(93)" title="Ir a fila 93">#93</button> <button class="rel-chip" onclick="scrollToRow(95)" title="Ir a fila 95">#95</button> <button class="rel-chip" onclick="scrollToRow(96)" title="Ir a fila 96">#96</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta metodológica sobre cómo construir objetivos de impacto coherentes con el contexto y con los actores sociales implicados.</td>
+    </tr>
+    <tr id="row-13" 
+        data-foro="F1" 
+        data-catd="imp" 
+        data-cate="rel"
+        data-sk="latente">
+      <td class="td-num">12</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Qué acuerdos son necesarios para garantizar una distribución centrada en el impacto social?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-rel">Relacionales, cuidado</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(94)" title="Ir a fila 94">#94</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Pregunta sobre los pactos éticos y operativos que hacen posible una distribución que respete a las comunidades protagonistas.</td>
+    </tr>
+    <tr id="row-14" 
+        data-foro="F1" 
+        data-catd="imp" 
+        data-cate="aut"
+        data-sk="latente">
+      <td class="td-num">13</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cómo demostrar los resultados del trabajo de impacto más allá de las cifras?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-aut">Autocrítica, revisión</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(62)" title="Ir a fila 62">#62</button> <button class="rel-chip" onclick="scrollToRow(64)" title="Ir a fila 64">#64</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Pregunta clave sobre los límites de la medición cuantitativa y la necesidad de metodologías cualitativas propias.</td>
+    </tr>
+    <tr id="row-15" 
+        data-foro="F1" 
+        data-catd="eco" 
+        data-cate="ide"
+        data-sk="latente">
+      <td class="td-num">14</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿El ecosistema puede partir de la unión de diferentes temáticas más que de un estilo de películas?</td>
+      <td><span class="pill td-eco">Ecosistema y sostenibilidad</span></td>
+      <td><span class="pill te-ide">Identidad, sentido, posicionamiento</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(2)" title="Ir a fila 2">#2</button> <button class="rel-chip" onclick="scrollToRow(4)" title="Ir a fila 4">#4</button> <button class="rel-chip" onclick="scrollToRow(51)" title="Ir a fila 51">#51</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Pregunta sobre qué une al campo: si es un género cinematográfico o una apuesta política común que trasciende los formatos.</td>
+    </tr>
+    <tr id="row-16" 
+        data-foro="F1" 
+        data-catd="eco" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">15</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cómo se tejen las redes a través del impacto?</td>
+      <td><span class="pill td-eco">Ecosistema y sostenibilidad</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(8)" title="Ir a fila 8">#8</button> <button class="rel-chip" onclick="scrollToRow(17)" title="Ir a fila 17">#17</button> <button class="rel-chip" onclick="scrollToRow(24)" title="Ir a fila 24">#24</button> <button class="rel-chip" onclick="scrollToRow(25)" title="Ir a fila 25">#25</button> <button class="rel-chip" onclick="scrollToRow(69)" title="Ir a fila 69">#69</button> <button class="rel-chip" onclick="scrollToRow(71)" title="Ir a fila 71">#71</button> <button class="rel-chip" onclick="scrollToRow(89)" title="Ir a fila 89">#89</button> <button class="rel-chip" onclick="scrollToRow(97)" title="Ir a fila 97">#97</button> <button class="rel-chip" onclick="scrollToRow(98)" title="Ir a fila 98">#98</button> <button class="rel-chip" onclick="scrollToRow(99)" title="Ir a fila 99">#99</button> <button class="rel-chip" onclick="scrollToRow(108)" title="Ir a fila 108">#108</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre los mecanismos de articulación entre organizaciones, cineastas y comunidades que sostienen el ecosistema.</td>
+    </tr>
+    <tr id="row-17" 
+        data-foro="F1" 
+        data-catd="eco" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">16</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cómo crear una cultura de financiación de campañas de impacto en circuitos no comerciales?</td>
+      <td><span class="pill td-eco">Ecosistema y sostenibilidad</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(8)" title="Ir a fila 8">#8</button> <button class="rel-chip" onclick="scrollToRow(16)" title="Ir a fila 16">#16</button> <button class="rel-chip" onclick="scrollToRow(24)" title="Ir a fila 24">#24</button> <button class="rel-chip" onclick="scrollToRow(25)" title="Ir a fila 25">#25</button> <button class="rel-chip" onclick="scrollToRow(69)" title="Ir a fila 69">#69</button> <button class="rel-chip" onclick="scrollToRow(71)" title="Ir a fila 71">#71</button> <button class="rel-chip" onclick="scrollToRow(89)" title="Ir a fila 89">#89</button> <button class="rel-chip" onclick="scrollToRow(97)" title="Ir a fila 97">#97</button> <button class="rel-chip" onclick="scrollToRow(98)" title="Ir a fila 98">#98</button> <button class="rel-chip" onclick="scrollToRow(99)" title="Ir a fila 99">#99</button> <button class="rel-chip" onclick="scrollToRow(108)" title="Ir a fila 108">#108</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre modelos de financiación que hagan sostenible el trabajo de impacto sin depender de los circuitos comerciales.</td>
+    </tr>
+    <tr id="row-18" 
+        data-foro="F1" 
+        data-catd="dis" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">17</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cómo llegar al público sin los altos gastos en medios de comunicación que se practican en los modelos comerciales tradicionales?</td>
+      <td><span class="pill td-dis">Distribución y/o circulación y audiencias</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(29)" title="Ir a fila 29">#29</button> <button class="rel-chip" onclick="scrollToRow(30)" title="Ir a fila 30">#30</button> <button class="rel-chip" onclick="scrollToRow(48)" title="Ir a fila 48">#48</button> <button class="rel-chip" onclick="scrollToRow(49)" title="Ir a fila 49">#49</button> <button class="rel-chip" onclick="scrollToRow(54)" title="Ir a fila 54">#54</button> <button class="rel-chip" onclick="scrollToRow(86)" title="Ir a fila 86">#86</button> <button class="rel-chip" onclick="scrollToRow(87)" title="Ir a fila 87">#87</button> <button class="rel-chip" onclick="scrollToRow(88)" title="Ir a fila 88">#88</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre estrategias de circulación alternativas que no dependan de los presupuestos y lógicas del marketing comercial.</td>
+    </tr>
+    <tr id="row-19" 
+        data-foro="F1" 
+        data-catd="imp" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">18</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cómo puede repercutir el impacto social en la cadena del audiovisual?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(6)" title="Ir a fila 6">#6</button> <button class="rel-chip" onclick="scrollToRow(9)" title="Ir a fila 9">#9</button> <button class="rel-chip" onclick="scrollToRow(12)" title="Ir a fila 12">#12</button> <button class="rel-chip" onclick="scrollToRow(23)" title="Ir a fila 23">#23</button> <button class="rel-chip" onclick="scrollToRow(55)" title="Ir a fila 55">#55</button> <button class="rel-chip" onclick="scrollToRow(58)" title="Ir a fila 58">#58</button> <button class="rel-chip" onclick="scrollToRow(59)" title="Ir a fila 59">#59</button> <button class="rel-chip" onclick="scrollToRow(60)" title="Ir a fila 60">#60</button> <button class="rel-chip" onclick="scrollToRow(90)" title="Ir a fila 90">#90</button> <button class="rel-chip" onclick="scrollToRow(91)" title="Ir a fila 91">#91</button> <button class="rel-chip" onclick="scrollToRow(92)" title="Ir a fila 92">#92</button> <button class="rel-chip" onclick="scrollToRow(93)" title="Ir a fila 93">#93</button> <button class="rel-chip" onclick="scrollToRow(95)" title="Ir a fila 95">#95</button> <button class="rel-chip" onclick="scrollToRow(96)" title="Ir a fila 96">#96</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre cómo el impacto social incide no solo en comunidades sino en la propia industria y sus modelos de producción y distribución.</td>
+    </tr>
+    <tr id="row-20" 
+        data-foro="F1" 
+        data-catd="dis" 
+        data-cate="con"
+        data-sk="aislada">
+      <td class="td-num">19</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cómo puede repercutir el impacto social en la cadena del audiovisual?</td>
+      <td><span class="pill td-dis">Distribución y/o circulación y audiencias</span></td>
+      <td><span class="pill te-con">Contrahegemónicas</span></td>
+      <td class="td-rel"><span class="rel-empty">—</span></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Cuestiona cómo el impacto social puede modificar los modelos tradicionales de distribución y circulación de la industria audiovisual, buscando nuevas formas de llegar a audiencias relevantes.</td>
+    </tr>
+    <tr id="row-21" 
+        data-foro="F1" 
+        data-catd="nar" 
+        data-cate="ide"
+        data-sk="persistente">
+      <td class="td-num">20</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Queremos cambiar el mundo, contar historias o queremos trabajar?</td>
+      <td><span class="pill td-nar">Narrativas y representación</span></td>
+      <td><span class="pill te-ide">Identidad, sentido, posicionamiento</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(3)" title="Ir a fila 3">#3</button> <button class="rel-chip" onclick="scrollToRow(31)" title="Ir a fila 31">#31</button> <button class="rel-chip" onclick="scrollToRow(104)" title="Ir a fila 104">#104</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Una de las tensiones más honestas de los tres foros. No tiene respuesta y no debería tenerla: es una pregunta que sostiene la incomodidad necesaria del campo.</td>
+    </tr>
+    <tr id="row-22" 
+        data-foro="F1" 
+        data-catd="com" 
+        data-cate="rel"
+        data-sk="persistente">
+      <td class="td-num">21</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cuál es mi equipo y con quién trabajo?</td>
+      <td><span class="pill td-com">Comunidades, ética y cuidado</span></td>
+      <td><span class="pill te-rel">Relacionales, cuidado</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(26)" title="Ir a fila 26">#26</button> <button class="rel-chip" onclick="scrollToRow(27)" title="Ir a fila 27">#27</button> <button class="rel-chip" onclick="scrollToRow(28)" title="Ir a fila 28">#28</button> <button class="rel-chip" onclick="scrollToRow(40)" title="Ir a fila 40">#40</button> <button class="rel-chip" onclick="scrollToRow(45)" title="Ir a fila 45">#45</button> <button class="rel-chip" onclick="scrollToRow(46)" title="Ir a fila 46">#46</button> <button class="rel-chip" onclick="scrollToRow(106)" title="Ir a fila 106">#106</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre la composición y los valores del equipo como condición ética del trabajo de impacto, no solo como decisión técnica.</td>
+    </tr>
+    <tr id="row-23" 
+        data-foro="F1" 
+        data-catd="imp" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">22</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Qué formas de medir el impacto cuantitativa y cualitativamente funcionan y cuáles articulan las dimensiones micro y macro?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(6)" title="Ir a fila 6">#6</button> <button class="rel-chip" onclick="scrollToRow(9)" title="Ir a fila 9">#9</button> <button class="rel-chip" onclick="scrollToRow(12)" title="Ir a fila 12">#12</button> <button class="rel-chip" onclick="scrollToRow(19)" title="Ir a fila 19">#19</button> <button class="rel-chip" onclick="scrollToRow(55)" title="Ir a fila 55">#55</button> <button class="rel-chip" onclick="scrollToRow(58)" title="Ir a fila 58">#58</button> <button class="rel-chip" onclick="scrollToRow(59)" title="Ir a fila 59">#59</button> <button class="rel-chip" onclick="scrollToRow(60)" title="Ir a fila 60">#60</button> <button class="rel-chip" onclick="scrollToRow(90)" title="Ir a fila 90">#90</button> <button class="rel-chip" onclick="scrollToRow(91)" title="Ir a fila 91">#91</button> <button class="rel-chip" onclick="scrollToRow(92)" title="Ir a fila 92">#92</button> <button class="rel-chip" onclick="scrollToRow(93)" title="Ir a fila 93">#93</button> <button class="rel-chip" onclick="scrollToRow(95)" title="Ir a fila 95">#95</button> <button class="rel-chip" onclick="scrollToRow(96)" title="Ir a fila 96">#96</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta metodológica sobre cómo combinar distintas formas de medir el cambio sin reducir la complejidad del proceso.</td>
+    </tr>
+    <tr id="row-24" 
+        data-foro="F1" 
+        data-catd="eco" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">23</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cómo financiar las campañas de impacto?</td>
+      <td><span class="pill td-eco">Ecosistema y sostenibilidad</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(8)" title="Ir a fila 8">#8</button> <button class="rel-chip" onclick="scrollToRow(16)" title="Ir a fila 16">#16</button> <button class="rel-chip" onclick="scrollToRow(17)" title="Ir a fila 17">#17</button> <button class="rel-chip" onclick="scrollToRow(25)" title="Ir a fila 25">#25</button> <button class="rel-chip" onclick="scrollToRow(69)" title="Ir a fila 69">#69</button> <button class="rel-chip" onclick="scrollToRow(71)" title="Ir a fila 71">#71</button> <button class="rel-chip" onclick="scrollToRow(89)" title="Ir a fila 89">#89</button> <button class="rel-chip" onclick="scrollToRow(97)" title="Ir a fila 97">#97</button> <button class="rel-chip" onclick="scrollToRow(98)" title="Ir a fila 98">#98</button> <button class="rel-chip" onclick="scrollToRow(99)" title="Ir a fila 99">#99</button> <button class="rel-chip" onclick="scrollToRow(108)" title="Ir a fila 108">#108</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre los modelos de financiación que hacen sostenible el trabajo de impacto sin comprometer su autonomía política.</td>
+    </tr>
+    <tr id="row-25" 
+        data-foro="F1" 
+        data-catd="eco" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">24</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cómo pueden colaborar las grandes plataformas, fondos y convocatorias con la cooperación latinoamericana?</td>
+      <td><span class="pill td-eco">Ecosistema y sostenibilidad</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(8)" title="Ir a fila 8">#8</button> <button class="rel-chip" onclick="scrollToRow(16)" title="Ir a fila 16">#16</button> <button class="rel-chip" onclick="scrollToRow(17)" title="Ir a fila 17">#17</button> <button class="rel-chip" onclick="scrollToRow(24)" title="Ir a fila 24">#24</button> <button class="rel-chip" onclick="scrollToRow(69)" title="Ir a fila 69">#69</button> <button class="rel-chip" onclick="scrollToRow(71)" title="Ir a fila 71">#71</button> <button class="rel-chip" onclick="scrollToRow(89)" title="Ir a fila 89">#89</button> <button class="rel-chip" onclick="scrollToRow(97)" title="Ir a fila 97">#97</button> <button class="rel-chip" onclick="scrollToRow(98)" title="Ir a fila 98">#98</button> <button class="rel-chip" onclick="scrollToRow(99)" title="Ir a fila 99">#99</button> <button class="rel-chip" onclick="scrollToRow(108)" title="Ir a fila 108">#108</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre la relación entre el campo y los grandes financiadores internacionales, y cómo esa relación puede ser equitativa.</td>
+    </tr>
+    <tr id="row-26" 
+        data-foro="F1" 
+        data-catd="com" 
+        data-cate="rel"
+        data-sk="persistente">
+      <td class="td-num">25</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cómo velar por la horizontalidad en los roles y procesos inclusivos al trabajar con comunidades?</td>
+      <td><span class="pill td-com">Comunidades, ética y cuidado</span></td>
+      <td><span class="pill te-rel">Relacionales, cuidado</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(22)" title="Ir a fila 22">#22</button> <button class="rel-chip" onclick="scrollToRow(27)" title="Ir a fila 27">#27</button> <button class="rel-chip" onclick="scrollToRow(28)" title="Ir a fila 28">#28</button> <button class="rel-chip" onclick="scrollToRow(40)" title="Ir a fila 40">#40</button> <button class="rel-chip" onclick="scrollToRow(45)" title="Ir a fila 45">#45</button> <button class="rel-chip" onclick="scrollToRow(46)" title="Ir a fila 46">#46</button> <button class="rel-chip" onclick="scrollToRow(106)" title="Ir a fila 106">#106</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre las condiciones de igualdad y participación real dentro de los procesos de producción con comunidades.</td>
+    </tr>
+    <tr id="row-27" 
+        data-foro="F1" 
+        data-catd="com" 
+        data-cate="rel"
+        data-sk="persistente">
+      <td class="td-num">26</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cómo pensar en la seguridad desde el momento en que se filma?</td>
+      <td><span class="pill td-com">Comunidades, ética y cuidado</span></td>
+      <td><span class="pill te-rel">Relacionales, cuidado</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(22)" title="Ir a fila 22">#22</button> <button class="rel-chip" onclick="scrollToRow(26)" title="Ir a fila 26">#26</button> <button class="rel-chip" onclick="scrollToRow(28)" title="Ir a fila 28">#28</button> <button class="rel-chip" onclick="scrollToRow(40)" title="Ir a fila 40">#40</button> <button class="rel-chip" onclick="scrollToRow(45)" title="Ir a fila 45">#45</button> <button class="rel-chip" onclick="scrollToRow(46)" title="Ir a fila 46">#46</button> <button class="rel-chip" onclick="scrollToRow(106)" title="Ir a fila 106">#106</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre la protección de quienes participan en las producciones como obligación ética desde el inicio del proceso.</td>
+    </tr>
+    <tr id="row-28" 
+        data-foro="F1" 
+        data-catd="com" 
+        data-cate="rel"
+        data-sk="persistente">
+      <td class="td-num">27</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cómo priorizar la voluntad de los participantes en la pantalla?</td>
+      <td><span class="pill td-com">Comunidades, ética y cuidado</span></td>
+      <td><span class="pill te-rel">Relacionales, cuidado</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(22)" title="Ir a fila 22">#22</button> <button class="rel-chip" onclick="scrollToRow(26)" title="Ir a fila 26">#26</button> <button class="rel-chip" onclick="scrollToRow(27)" title="Ir a fila 27">#27</button> <button class="rel-chip" onclick="scrollToRow(40)" title="Ir a fila 40">#40</button> <button class="rel-chip" onclick="scrollToRow(45)" title="Ir a fila 45">#45</button> <button class="rel-chip" onclick="scrollToRow(46)" title="Ir a fila 46">#46</button> <button class="rel-chip" onclick="scrollToRow(106)" title="Ir a fila 106">#106</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre el consentimiento y la agencia de las personas filmadas como principio ético irrenunciable.</td>
+    </tr>
+    <tr id="row-29" 
+        data-foro="F1" 
+        data-catd="dis" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">28</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cómo pensar en la accesibilidad al contenido?</td>
+      <td><span class="pill td-dis">Distribución y/o circulación y audiencias</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(18)" title="Ir a fila 18">#18</button> <button class="rel-chip" onclick="scrollToRow(30)" title="Ir a fila 30">#30</button> <button class="rel-chip" onclick="scrollToRow(48)" title="Ir a fila 48">#48</button> <button class="rel-chip" onclick="scrollToRow(49)" title="Ir a fila 49">#49</button> <button class="rel-chip" onclick="scrollToRow(54)" title="Ir a fila 54">#54</button> <button class="rel-chip" onclick="scrollToRow(86)" title="Ir a fila 86">#86</button> <button class="rel-chip" onclick="scrollToRow(87)" title="Ir a fila 87">#87</button> <button class="rel-chip" onclick="scrollToRow(88)" title="Ir a fila 88">#88</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre cómo el contenido llega a públicos que no tienen acceso a los circuitos tradicionales de exhibición.</td>
+    </tr>
+    <tr id="row-30" 
+        data-foro="F1" 
+        data-catd="dis" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">29</td>
+      <td><span class="fb f1">Foro I</span></td>
+      <td class="td-q">¿Cómo alinear la distribución con los objetivos de impacto social?</td>
+      <td><span class="pill td-dis">Distribución y/o circulación y audiencias</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(18)" title="Ir a fila 18">#18</button> <button class="rel-chip" onclick="scrollToRow(29)" title="Ir a fila 29">#29</button> <button class="rel-chip" onclick="scrollToRow(48)" title="Ir a fila 48">#48</button> <button class="rel-chip" onclick="scrollToRow(49)" title="Ir a fila 49">#49</button> <button class="rel-chip" onclick="scrollToRow(54)" title="Ir a fila 54">#54</button> <button class="rel-chip" onclick="scrollToRow(86)" title="Ir a fila 86">#86</button> <button class="rel-chip" onclick="scrollToRow(87)" title="Ir a fila 87">#87</button> <button class="rel-chip" onclick="scrollToRow(88)" title="Ir a fila 88">#88</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre la coherencia entre la estrategia de circulación de una película y los cambios que busca producir.</td>
+    </tr>
+    <tr id="row-31" 
+        data-foro="F2" 
+        data-catd="nar" 
+        data-cate="ide"
+        data-sk="persistente">
+      <td class="td-num">30</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿De dónde nacen nuestras historias e imágenes?</td>
+      <td><span class="pill td-nar">Narrativas y representación</span></td>
+      <td><span class="pill te-ide">Identidad, sentido, posicionamiento</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(3)" title="Ir a fila 3">#3</button> <button class="rel-chip" onclick="scrollToRow(21)" title="Ir a fila 21">#21</button> <button class="rel-chip" onclick="scrollToRow(104)" title="Ir a fila 104">#104</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre el origen territorial, cultural y político de las historias. Quién las genera y desde qué condiciones materiales y simbólicas.</td>
+    </tr>
+    <tr id="row-32" 
+        data-foro="F2" 
+        data-catd="pod" 
+        data-cate="ide"
+        data-sk="latente">
+      <td class="td-num">31</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Cuál es nuestro sentido de pertenencia?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-ide">Identidad, sentido, posicionamiento</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(38)" title="Ir a fila 38">#38</button> <button class="rel-chip" onclick="scrollToRow(39)" title="Ir a fila 39">#39</button> <button class="rel-chip" onclick="scrollToRow(43)" title="Ir a fila 43">#43</button> <button class="rel-chip" onclick="scrollToRow(101)" title="Ir a fila 101">#101</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Pregunta sobre la identidad colectiva del campo en un territorio históricamente disputado. Quiénes somos y desde qué lugar hablamos.</td>
+    </tr>
+    <tr id="row-33" 
+        data-foro="F2" 
+        data-catd="pod" 
+        data-cate="con"
+        data-sk="persistente">
+      <td class="td-num">32</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Quién hace el cine del pueblo?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-con">Contrahegemónicas</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(11)" title="Ir a fila 11">#11</button> <button class="rel-chip" onclick="scrollToRow(34)" title="Ir a fila 34">#34</button> <button class="rel-chip" onclick="scrollToRow(35)" title="Ir a fila 35">#35</button> <button class="rel-chip" onclick="scrollToRow(50)" title="Ir a fila 50">#50</button> <button class="rel-chip" onclick="scrollToRow(52)" title="Ir a fila 52">#52</button> <button class="rel-chip" onclick="scrollToRow(63)" title="Ir a fila 63">#63</button> <button class="rel-chip" onclick="scrollToRow(75)" title="Ir a fila 75">#75</button> <button class="rel-chip" onclick="scrollToRow(80)" title="Ir a fila 80">#80</button> <button class="rel-chip" onclick="scrollToRow(83)" title="Ir a fila 83">#83</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre la autoría y la legitimidad: quién tiene el derecho y la capacidad de contar las historias de las comunidades populares.</td>
+    </tr>
+    <tr id="row-34" 
+        data-foro="F2" 
+        data-catd="pod" 
+        data-cate="con"
+        data-sk="persistente">
+      <td class="td-num">33</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Qué busca la curaduría sobre el cine indígena?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-con">Contrahegemónicas</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(11)" title="Ir a fila 11">#11</button> <button class="rel-chip" onclick="scrollToRow(33)" title="Ir a fila 33">#33</button> <button class="rel-chip" onclick="scrollToRow(35)" title="Ir a fila 35">#35</button> <button class="rel-chip" onclick="scrollToRow(50)" title="Ir a fila 50">#50</button> <button class="rel-chip" onclick="scrollToRow(52)" title="Ir a fila 52">#52</button> <button class="rel-chip" onclick="scrollToRow(63)" title="Ir a fila 63">#63</button> <button class="rel-chip" onclick="scrollToRow(75)" title="Ir a fila 75">#75</button> <button class="rel-chip" onclick="scrollToRow(80)" title="Ir a fila 80">#80</button> <button class="rel-chip" onclick="scrollToRow(83)" title="Ir a fila 83">#83</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre quién define qué es el cine indígena, con qué criterios se selecciona y qué intereses representa esa selección.</td>
+    </tr>
+    <tr id="row-35" 
+        data-foro="F2" 
+        data-catd="pod" 
+        data-cate="con"
+        data-sk="persistente">
+      <td class="td-num">34</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Qué es Latinoamérica?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-con">Contrahegemónicas</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(11)" title="Ir a fila 11">#11</button> <button class="rel-chip" onclick="scrollToRow(33)" title="Ir a fila 33">#33</button> <button class="rel-chip" onclick="scrollToRow(34)" title="Ir a fila 34">#34</button> <button class="rel-chip" onclick="scrollToRow(50)" title="Ir a fila 50">#50</button> <button class="rel-chip" onclick="scrollToRow(52)" title="Ir a fila 52">#52</button> <button class="rel-chip" onclick="scrollToRow(63)" title="Ir a fila 63">#63</button> <button class="rel-chip" onclick="scrollToRow(75)" title="Ir a fila 75">#75</button> <button class="rel-chip" onclick="scrollToRow(80)" title="Ir a fila 80">#80</button> <button class="rel-chip" onclick="scrollToRow(83)" title="Ir a fila 83">#83</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre los límites y la construcción política de la categoría. Cuestiona si sirve o si reproduce una homogeneización que borra diferencias.</td>
+    </tr>
+    <tr id="row-36" 
+        data-foro="F2" 
+        data-catd="dud" 
+        data-cate="aut"
+        data-sk="latente">
+      <td class="td-num">35</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Qué es Latinoamérica?</td>
+      <td><span class="pill td-dud">Duda / inclasificable</span></td>
+      <td><span class="pill te-aut">Autocrítica, revisión</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(44)" title="Ir a fila 44">#44</button> <button class="rel-chip" onclick="scrollToRow(53)" title="Ir a fila 53">#53</button> <button class="rel-chip" onclick="scrollToRow(61)" title="Ir a fila 61">#61</button> <button class="rel-chip" onclick="scrollToRow(65)" title="Ir a fila 65">#65</button> <button class="rel-chip" onclick="scrollToRow(68)" title="Ir a fila 68">#68</button> <button class="rel-chip" onclick="scrollToRow(103)" title="Ir a fila 103">#103</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">La categoría de latinoamérica como concepto homogeneizador que borra diferencias culturales, territoriales e identitarias es una tensión sin resolución clara dentro del campo.</td>
+    </tr>
+    <tr id="row-37" 
+        data-foro="F2" 
+        data-catd="dud" 
+        data-cate="ide"
+        data-sk="aislada">
+      <td class="td-num">36</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Para qué hacemos lo que hacemos?</td>
+      <td><span class="pill td-dud">Duda / inclasificable</span></td>
+      <td><span class="pill te-ide">Identidad, sentido, posicionamiento</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(41)" title="Ir a fila 41">#41</button> <button class="rel-chip" onclick="scrollToRow(42)" title="Ir a fila 42">#42</button> <button class="rel-chip" onclick="scrollToRow(57)" title="Ir a fila 57">#57</button></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Pregunta radical sobre el sentido del campo. Toca la motivación, la identidad y la finalidad a la vez. No tiene una respuesta única ni una categoría que la contenga sola.</td>
+    </tr>
+    <tr id="row-38" 
+        data-foro="F2" 
+        data-catd="pod" 
+        data-cate="ide"
+        data-sk="latente">
+      <td class="td-num">37</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Desde qué enunciación parto?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-ide">Identidad, sentido, posicionamiento</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(32)" title="Ir a fila 32">#32</button> <button class="rel-chip" onclick="scrollToRow(39)" title="Ir a fila 39">#39</button> <button class="rel-chip" onclick="scrollToRow(43)" title="Ir a fila 43">#43</button> <button class="rel-chip" onclick="scrollToRow(101)" title="Ir a fila 101">#101</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Pregunta sobre el lugar de habla: desde qué posición, cuerpo y territorio hablo, y cómo eso determina lo que puedo decir y lo que no.</td>
+    </tr>
+    <tr id="row-39" 
+        data-foro="F2" 
+        data-catd="pod" 
+        data-cate="ide"
+        data-sk="latente">
+      <td class="td-num">38</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Qué pertenencia quiero proponer?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-ide">Identidad, sentido, posicionamiento</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(32)" title="Ir a fila 32">#32</button> <button class="rel-chip" onclick="scrollToRow(38)" title="Ir a fila 38">#38</button> <button class="rel-chip" onclick="scrollToRow(43)" title="Ir a fila 43">#43</button> <button class="rel-chip" onclick="scrollToRow(101)" title="Ir a fila 101">#101</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Pregunta sobre la construcción de identidad colectiva a través del cine: qué comunidad imaginamos y hacia quién nos dirigimos.</td>
+    </tr>
+    <tr id="row-40" 
+        data-foro="F2" 
+        data-catd="com" 
+        data-cate="rel"
+        data-sk="persistente">
+      <td class="td-num">39</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Con quién estamos?</td>
+      <td><span class="pill td-com">Comunidades, ética y cuidado</span></td>
+      <td><span class="pill te-rel">Relacionales, cuidado</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(22)" title="Ir a fila 22">#22</button> <button class="rel-chip" onclick="scrollToRow(26)" title="Ir a fila 26">#26</button> <button class="rel-chip" onclick="scrollToRow(27)" title="Ir a fila 27">#27</button> <button class="rel-chip" onclick="scrollToRow(28)" title="Ir a fila 28">#28</button> <button class="rel-chip" onclick="scrollToRow(45)" title="Ir a fila 45">#45</button> <button class="rel-chip" onclick="scrollToRow(46)" title="Ir a fila 46">#46</button> <button class="rel-chip" onclick="scrollToRow(106)" title="Ir a fila 106">#106</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre el vínculo con las comunidades: quiénes son nuestros aliados reales y cómo se construye esa relación éticamente.</td>
+    </tr>
+    <tr id="row-41" 
+        data-foro="F2" 
+        data-catd="dud" 
+        data-cate="ide"
+        data-sk="aislada">
+      <td class="td-num">40</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿En qué suelo estamos?</td>
+      <td><span class="pill td-dud">Duda / inclasificable</span></td>
+      <td><span class="pill te-ide">Identidad, sentido, posicionamiento</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(37)" title="Ir a fila 37">#37</button> <button class="rel-chip" onclick="scrollToRow(42)" title="Ir a fila 42">#42</button> <button class="rel-chip" onclick="scrollToRow(57)" title="Ir a fila 57">#57</button></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Pregunta sobre el territorio como condición del trabajo. Conecta lo geográfico, lo político y lo espiritual de una manera que resiste una sola categoría.</td>
+    </tr>
+    <tr id="row-42" 
+        data-foro="F2" 
+        data-catd="dud" 
+        data-cate="ide"
+        data-sk="aislada">
+      <td class="td-num">41</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Para qué hacer cine?</td>
+      <td><span class="pill td-dud">Duda / inclasificable</span></td>
+      <td><span class="pill te-ide">Identidad, sentido, posicionamiento</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(37)" title="Ir a fila 37">#37</button> <button class="rel-chip" onclick="scrollToRow(41)" title="Ir a fila 41">#41</button> <button class="rel-chip" onclick="scrollToRow(57)" title="Ir a fila 57">#57</button></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Pregunta raíz que el campo no ha cerrado ni debería cerrar. Toca la identidad, el poder, las narrativas y el impacto simultáneamente.</td>
+    </tr>
+    <tr id="row-43" 
+        data-foro="F2" 
+        data-catd="pod" 
+        data-cate="ide"
+        data-sk="latente">
+      <td class="td-num">42</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Ustedes quiénes son, como mexicanxs?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-ide">Identidad, sentido, posicionamiento</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(32)" title="Ir a fila 32">#32</button> <button class="rel-chip" onclick="scrollToRow(38)" title="Ir a fila 38">#38</button> <button class="rel-chip" onclick="scrollToRow(39)" title="Ir a fila 39">#39</button> <button class="rel-chip" onclick="scrollToRow(101)" title="Ir a fila 101">#101</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Pregunta sobre la identidad nacional como categoría problemática. Cuestiona si las identidades colectivas dadas sirven o limitan el trabajo del campo.</td>
+    </tr>
+    <tr id="row-44" 
+        data-foro="F2" 
+        data-catd="dud" 
+        data-cate="aut"
+        data-sk="latente">
+      <td class="td-num">43</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Por qué se le da un lugar de impacto al documental y no a la ficción? ¿La ficción también transforma?</td>
+      <td><span class="pill td-dud">Duda / inclasificable</span></td>
+      <td><span class="pill te-aut">Autocrítica, revisión</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(36)" title="Ir a fila 36">#36</button> <button class="rel-chip" onclick="scrollToRow(53)" title="Ir a fila 53">#53</button> <button class="rel-chip" onclick="scrollToRow(61)" title="Ir a fila 61">#61</button> <button class="rel-chip" onclick="scrollToRow(65)" title="Ir a fila 65">#65</button> <button class="rel-chip" onclick="scrollToRow(68)" title="Ir a fila 68">#68</button> <button class="rel-chip" onclick="scrollToRow(103)" title="Ir a fila 103">#103</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Tensión sin resolución clara dentro del campo: cuestiona los supuestos sobre qué formatos producen impacto y por qué.</td>
+    </tr>
+    <tr id="row-45" 
+        data-foro="F2" 
+        data-catd="com" 
+        data-cate="rel"
+        data-sk="persistente">
+      <td class="td-num">44</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Con quiénes dialogan nuestras historias?</td>
+      <td><span class="pill td-com">Comunidades, ética y cuidado</span></td>
+      <td><span class="pill te-rel">Relacionales, cuidado</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(22)" title="Ir a fila 22">#22</button> <button class="rel-chip" onclick="scrollToRow(26)" title="Ir a fila 26">#26</button> <button class="rel-chip" onclick="scrollToRow(27)" title="Ir a fila 27">#27</button> <button class="rel-chip" onclick="scrollToRow(28)" title="Ir a fila 28">#28</button> <button class="rel-chip" onclick="scrollToRow(40)" title="Ir a fila 40">#40</button> <button class="rel-chip" onclick="scrollToRow(46)" title="Ir a fila 46">#46</button> <button class="rel-chip" onclick="scrollToRow(106)" title="Ir a fila 106">#106</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre a quién nos dirigimos realmente y cómo se construye ese diálogo con comunidades protagonistas y audiencias.</td>
+    </tr>
+    <tr id="row-46" 
+        data-foro="F2" 
+        data-catd="com" 
+        data-cate="rel"
+        data-sk="persistente">
+      <td class="td-num">45</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Cómo contrarrestar los riesgos de contar estas historias?</td>
+      <td><span class="pill td-com">Comunidades, ética y cuidado</span></td>
+      <td><span class="pill te-rel">Relacionales, cuidado</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(22)" title="Ir a fila 22">#22</button> <button class="rel-chip" onclick="scrollToRow(26)" title="Ir a fila 26">#26</button> <button class="rel-chip" onclick="scrollToRow(27)" title="Ir a fila 27">#27</button> <button class="rel-chip" onclick="scrollToRow(28)" title="Ir a fila 28">#28</button> <button class="rel-chip" onclick="scrollToRow(40)" title="Ir a fila 40">#40</button> <button class="rel-chip" onclick="scrollToRow(45)" title="Ir a fila 45">#45</button> <button class="rel-chip" onclick="scrollToRow(106)" title="Ir a fila 106">#106</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre la seguridad de quienes filman y de quienes son filmados, especialmente en contextos de persecución política o social.</td>
+    </tr>
+    <tr id="row-47" 
+        data-foro="F2" 
+        data-catd="com" 
+        data-cate="pra"
+        data-sk="aislada">
+      <td class="td-num">46</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Cómo se crea un protocolo de seguridad para salvaguardar personas en contextos de riesgo?</td>
+      <td><span class="pill td-com">Comunidades, ética y cuidado</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><span class="rel-empty">—</span></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Pregunta práctica sobre cómo construir protocolos que protejan a participantes en producciones en entornos de violencia o censura.</td>
+    </tr>
+    <tr id="row-48" 
+        data-foro="F2" 
+        data-catd="dis" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">47</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Cómo exhibir desde la creación de redes horizontales en vez de segmentadas?</td>
+      <td><span class="pill td-dis">Distribución y/o circulación y audiencias</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(18)" title="Ir a fila 18">#18</button> <button class="rel-chip" onclick="scrollToRow(29)" title="Ir a fila 29">#29</button> <button class="rel-chip" onclick="scrollToRow(30)" title="Ir a fila 30">#30</button> <button class="rel-chip" onclick="scrollToRow(49)" title="Ir a fila 49">#49</button> <button class="rel-chip" onclick="scrollToRow(54)" title="Ir a fila 54">#54</button> <button class="rel-chip" onclick="scrollToRow(86)" title="Ir a fila 86">#86</button> <button class="rel-chip" onclick="scrollToRow(87)" title="Ir a fila 87">#87</button> <button class="rel-chip" onclick="scrollToRow(88)" title="Ir a fila 88">#88</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre modelos de exhibición que construyan redes colectivas y equitativas en lugar de replicar la lógica segmentada del mercado.</td>
+    </tr>
+    <tr id="row-49" 
+        data-foro="F2" 
+        data-catd="dis" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">48</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Cómo crear ecosistemas fluidos en los modelos de distribución?</td>
+      <td><span class="pill td-dis">Distribución y/o circulación y audiencias</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(18)" title="Ir a fila 18">#18</button> <button class="rel-chip" onclick="scrollToRow(29)" title="Ir a fila 29">#29</button> <button class="rel-chip" onclick="scrollToRow(30)" title="Ir a fila 30">#30</button> <button class="rel-chip" onclick="scrollToRow(48)" title="Ir a fila 48">#48</button> <button class="rel-chip" onclick="scrollToRow(54)" title="Ir a fila 54">#54</button> <button class="rel-chip" onclick="scrollToRow(86)" title="Ir a fila 86">#86</button> <button class="rel-chip" onclick="scrollToRow(87)" title="Ir a fila 87">#87</button> <button class="rel-chip" onclick="scrollToRow(88)" title="Ir a fila 88">#88</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre cómo construir modelos de distribución que respondan a la diversidad de contextos latinoamericanos sin imponer una sola lógica.</td>
+    </tr>
+    <tr id="row-50" 
+        data-foro="F2" 
+        data-catd="pod" 
+        data-cate="con"
+        data-sk="persistente">
+      <td class="td-num">49</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Cómo activar, pensar y actuar el cine no en relación con la industria sino con la sociedad?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-con">Contrahegemónicas</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(11)" title="Ir a fila 11">#11</button> <button class="rel-chip" onclick="scrollToRow(33)" title="Ir a fila 33">#33</button> <button class="rel-chip" onclick="scrollToRow(34)" title="Ir a fila 34">#34</button> <button class="rel-chip" onclick="scrollToRow(35)" title="Ir a fila 35">#35</button> <button class="rel-chip" onclick="scrollToRow(52)" title="Ir a fila 52">#52</button> <button class="rel-chip" onclick="scrollToRow(63)" title="Ir a fila 63">#63</button> <button class="rel-chip" onclick="scrollToRow(75)" title="Ir a fila 75">#75</button> <button class="rel-chip" onclick="scrollToRow(80)" title="Ir a fila 80">#80</button> <button class="rel-chip" onclick="scrollToRow(83)" title="Ir a fila 83">#83</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta que desplaza el centro de referencia: de la industria audiovisual hacia las comunidades y la sociedad civil como interlocutores principales.</td>
+    </tr>
+    <tr id="row-51" 
+        data-foro="F2" 
+        data-catd="eco" 
+        data-cate="ide"
+        data-sk="latente">
+      <td class="td-num">50</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Cuáles son las fortalezas de Latinoamérica en el cine de impacto?</td>
+      <td><span class="pill td-eco">Ecosistema y sostenibilidad</span></td>
+      <td><span class="pill te-ide">Identidad, sentido, posicionamiento</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(2)" title="Ir a fila 2">#2</button> <button class="rel-chip" onclick="scrollToRow(4)" title="Ir a fila 4">#4</button> <button class="rel-chip" onclick="scrollToRow(15)" title="Ir a fila 15">#15</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Pregunta sobre los recursos, saberes y tradiciones propias del campo latinoamericano que lo distinguen de modelos externos.</td>
+    </tr>
+    <tr id="row-52" 
+        data-foro="F2" 
+        data-catd="pod" 
+        data-cate="con"
+        data-sk="persistente">
+      <td class="td-num">51</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Quiénes están al centro de la distribución?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-con">Contrahegemónicas</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(11)" title="Ir a fila 11">#11</button> <button class="rel-chip" onclick="scrollToRow(33)" title="Ir a fila 33">#33</button> <button class="rel-chip" onclick="scrollToRow(34)" title="Ir a fila 34">#34</button> <button class="rel-chip" onclick="scrollToRow(35)" title="Ir a fila 35">#35</button> <button class="rel-chip" onclick="scrollToRow(50)" title="Ir a fila 50">#50</button> <button class="rel-chip" onclick="scrollToRow(63)" title="Ir a fila 63">#63</button> <button class="rel-chip" onclick="scrollToRow(75)" title="Ir a fila 75">#75</button> <button class="rel-chip" onclick="scrollToRow(80)" title="Ir a fila 80">#80</button> <button class="rel-chip" onclick="scrollToRow(83)" title="Ir a fila 83">#83</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre las relaciones de poder en los modelos de distribución: quién decide, quién se beneficia y quién queda fuera.</td>
+    </tr>
+    <tr id="row-53" 
+        data-foro="F2" 
+        data-catd="dud" 
+        data-cate="aut"
+        data-sk="latente">
+      <td class="td-num">52</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Rol de los festivales: viejo o nuevo mundo?</td>
+      <td><span class="pill td-dud">Duda / inclasificable</span></td>
+      <td><span class="pill te-aut">Autocrítica, revisión</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(36)" title="Ir a fila 36">#36</button> <button class="rel-chip" onclick="scrollToRow(44)" title="Ir a fila 44">#44</button> <button class="rel-chip" onclick="scrollToRow(61)" title="Ir a fila 61">#61</button> <button class="rel-chip" onclick="scrollToRow(65)" title="Ir a fila 65">#65</button> <button class="rel-chip" onclick="scrollToRow(68)" title="Ir a fila 68">#68</button> <button class="rel-chip" onclick="scrollToRow(103)" title="Ir a fila 103">#103</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Tensión sin resolución: los festivales son a la vez mecanismo de validación hegemónica y posible espacio de circulación alternativa. El campo no ha cerrado esta pregunta.</td>
+    </tr>
+    <tr id="row-54" 
+        data-foro="F2" 
+        data-catd="dis" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">53</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Qué condiciones son necesarias para que existan espectadorxs?</td>
+      <td><span class="pill td-dis">Distribución y/o circulación y audiencias</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(18)" title="Ir a fila 18">#18</button> <button class="rel-chip" onclick="scrollToRow(29)" title="Ir a fila 29">#29</button> <button class="rel-chip" onclick="scrollToRow(30)" title="Ir a fila 30">#30</button> <button class="rel-chip" onclick="scrollToRow(48)" title="Ir a fila 48">#48</button> <button class="rel-chip" onclick="scrollToRow(49)" title="Ir a fila 49">#49</button> <button class="rel-chip" onclick="scrollToRow(86)" title="Ir a fila 86">#86</button> <button class="rel-chip" onclick="scrollToRow(87)" title="Ir a fila 87">#87</button> <button class="rel-chip" onclick="scrollToRow(88)" title="Ir a fila 88">#88</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre qué hace falta para que las comunidades destinatarias puedan realmente acceder y encontrarse con las películas.</td>
+    </tr>
+    <tr id="row-55" 
+        data-foro="F2" 
+        data-catd="imp" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">54</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Cómo es posible medir las evaluaciones de impacto?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(6)" title="Ir a fila 6">#6</button> <button class="rel-chip" onclick="scrollToRow(9)" title="Ir a fila 9">#9</button> <button class="rel-chip" onclick="scrollToRow(12)" title="Ir a fila 12">#12</button> <button class="rel-chip" onclick="scrollToRow(19)" title="Ir a fila 19">#19</button> <button class="rel-chip" onclick="scrollToRow(23)" title="Ir a fila 23">#23</button> <button class="rel-chip" onclick="scrollToRow(58)" title="Ir a fila 58">#58</button> <button class="rel-chip" onclick="scrollToRow(59)" title="Ir a fila 59">#59</button> <button class="rel-chip" onclick="scrollToRow(60)" title="Ir a fila 60">#60</button> <button class="rel-chip" onclick="scrollToRow(90)" title="Ir a fila 90">#90</button> <button class="rel-chip" onclick="scrollToRow(91)" title="Ir a fila 91">#91</button> <button class="rel-chip" onclick="scrollToRow(92)" title="Ir a fila 92">#92</button> <button class="rel-chip" onclick="scrollToRow(93)" title="Ir a fila 93">#93</button> <button class="rel-chip" onclick="scrollToRow(95)" title="Ir a fila 95">#95</button> <button class="rel-chip" onclick="scrollToRow(96)" title="Ir a fila 96">#96</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre la viabilidad y los límites de los sistemas de medición del impacto en contextos latinoamericanos diversos.</td>
+    </tr>
+    <tr id="row-56" 
+        data-foro="F2" 
+        data-catd="imp" 
+        data-cate="ide"
+        data-sk="aislada">
+      <td class="td-num">55</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Qué quiero cambiar? ¿Para quién? ¿Cuándo? ¿Hacia dónde?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-ide">Identidad, sentido, posicionamiento</span></td>
+      <td class="td-rel"><span class="rel-empty">—</span></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Preguntas orientadoras del diseño de impacto. Definen la intencionalidad y la dirección antes de elegir cualquier metodología de evaluación.</td>
+    </tr>
+    <tr id="row-57" 
+        data-foro="F2" 
+        data-catd="dud" 
+        data-cate="ide"
+        data-sk="aislada">
+      <td class="td-num">56</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Qué quiero cambiar? ¿Para quién? ¿Cuándo? ¿Hacia dónde?</td>
+      <td><span class="pill td-dud">Duda / inclasificable</span></td>
+      <td><span class="pill te-ide">Identidad, sentido, posicionamiento</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(37)" title="Ir a fila 37">#37</button> <button class="rel-chip" onclick="scrollToRow(41)" title="Ir a fila 41">#41</button> <button class="rel-chip" onclick="scrollToRow(42)" title="Ir a fila 42">#42</button></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Más que buscar un método, estas preguntas interrogan la intencionalidad y la dirección del trabajo. Definen el sentido antes que la herramienta y por eso resisten una clasificación única.</td>
+    </tr>
+    <tr id="row-58" 
+        data-foro="F2" 
+        data-catd="imp" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">57</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Cómo monitorear el progreso de un tema a lo largo del tiempo?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(6)" title="Ir a fila 6">#6</button> <button class="rel-chip" onclick="scrollToRow(9)" title="Ir a fila 9">#9</button> <button class="rel-chip" onclick="scrollToRow(12)" title="Ir a fila 12">#12</button> <button class="rel-chip" onclick="scrollToRow(19)" title="Ir a fila 19">#19</button> <button class="rel-chip" onclick="scrollToRow(23)" title="Ir a fila 23">#23</button> <button class="rel-chip" onclick="scrollToRow(55)" title="Ir a fila 55">#55</button> <button class="rel-chip" onclick="scrollToRow(59)" title="Ir a fila 59">#59</button> <button class="rel-chip" onclick="scrollToRow(60)" title="Ir a fila 60">#60</button> <button class="rel-chip" onclick="scrollToRow(90)" title="Ir a fila 90">#90</button> <button class="rel-chip" onclick="scrollToRow(91)" title="Ir a fila 91">#91</button> <button class="rel-chip" onclick="scrollToRow(92)" title="Ir a fila 92">#92</button> <button class="rel-chip" onclick="scrollToRow(93)" title="Ir a fila 93">#93</button> <button class="rel-chip" onclick="scrollToRow(95)" title="Ir a fila 95">#95</button> <button class="rel-chip" onclick="scrollToRow(96)" title="Ir a fila 96">#96</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre el seguimiento longitudinal del cambio, más allá de la medición puntual después de un estreno o campaña.</td>
+    </tr>
+    <tr id="row-59" 
+        data-foro="F2" 
+        data-catd="imp" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">58</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Cómo dar seguimiento después de evaluar?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(6)" title="Ir a fila 6">#6</button> <button class="rel-chip" onclick="scrollToRow(9)" title="Ir a fila 9">#9</button> <button class="rel-chip" onclick="scrollToRow(12)" title="Ir a fila 12">#12</button> <button class="rel-chip" onclick="scrollToRow(19)" title="Ir a fila 19">#19</button> <button class="rel-chip" onclick="scrollToRow(23)" title="Ir a fila 23">#23</button> <button class="rel-chip" onclick="scrollToRow(55)" title="Ir a fila 55">#55</button> <button class="rel-chip" onclick="scrollToRow(58)" title="Ir a fila 58">#58</button> <button class="rel-chip" onclick="scrollToRow(60)" title="Ir a fila 60">#60</button> <button class="rel-chip" onclick="scrollToRow(90)" title="Ir a fila 90">#90</button> <button class="rel-chip" onclick="scrollToRow(91)" title="Ir a fila 91">#91</button> <button class="rel-chip" onclick="scrollToRow(92)" title="Ir a fila 92">#92</button> <button class="rel-chip" onclick="scrollToRow(93)" title="Ir a fila 93">#93</button> <button class="rel-chip" onclick="scrollToRow(95)" title="Ir a fila 95">#95</button> <button class="rel-chip" onclick="scrollToRow(96)" title="Ir a fila 96">#96</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre qué ocurre con los datos y aprendizajes de la evaluación: cómo se usan, se comparten y se transforman en acción.</td>
+    </tr>
+    <tr id="row-60" 
+        data-foro="F2" 
+        data-catd="imp" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">59</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">Después de evaluar, ¿qué hacemos con eso?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(6)" title="Ir a fila 6">#6</button> <button class="rel-chip" onclick="scrollToRow(9)" title="Ir a fila 9">#9</button> <button class="rel-chip" onclick="scrollToRow(12)" title="Ir a fila 12">#12</button> <button class="rel-chip" onclick="scrollToRow(19)" title="Ir a fila 19">#19</button> <button class="rel-chip" onclick="scrollToRow(23)" title="Ir a fila 23">#23</button> <button class="rel-chip" onclick="scrollToRow(55)" title="Ir a fila 55">#55</button> <button class="rel-chip" onclick="scrollToRow(58)" title="Ir a fila 58">#58</button> <button class="rel-chip" onclick="scrollToRow(59)" title="Ir a fila 59">#59</button> <button class="rel-chip" onclick="scrollToRow(90)" title="Ir a fila 90">#90</button> <button class="rel-chip" onclick="scrollToRow(91)" title="Ir a fila 91">#91</button> <button class="rel-chip" onclick="scrollToRow(92)" title="Ir a fila 92">#92</button> <button class="rel-chip" onclick="scrollToRow(93)" title="Ir a fila 93">#93</button> <button class="rel-chip" onclick="scrollToRow(95)" title="Ir a fila 95">#95</button> <button class="rel-chip" onclick="scrollToRow(96)" title="Ir a fila 96">#96</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre el uso real de los resultados de la evaluación. El campo evalúa pero no siempre sabe cómo transformar eso en aprendizaje colectivo.</td>
+    </tr>
+    <tr id="row-61" 
+        data-foro="F2" 
+        data-catd="dud" 
+        data-cate="aut"
+        data-sk="latente">
+      <td class="td-num">60</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">Después de evaluar, ¿qué hacemos con eso?</td>
+      <td><span class="pill td-dud">Duda / inclasificable</span></td>
+      <td><span class="pill te-aut">Autocrítica, revisión</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(36)" title="Ir a fila 36">#36</button> <button class="rel-chip" onclick="scrollToRow(44)" title="Ir a fila 44">#44</button> <button class="rel-chip" onclick="scrollToRow(53)" title="Ir a fila 53">#53</button> <button class="rel-chip" onclick="scrollToRow(65)" title="Ir a fila 65">#65</button> <button class="rel-chip" onclick="scrollToRow(68)" title="Ir a fila 68">#68</button> <button class="rel-chip" onclick="scrollToRow(103)" title="Ir a fila 103">#103</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Una vez evaluado el trabajo, el campo no siempre sabe qué hacer con lo que aprende. Esta tensión entre evaluar y actuar a partir de la evaluación no tiene una respuesta sencilla.</td>
+    </tr>
+    <tr id="row-62" 
+        data-foro="F2" 
+        data-catd="imp" 
+        data-cate="aut"
+        data-sk="latente">
+      <td class="td-num">61</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Cómo descolonizar el modelo de evaluación respondiendo a nuestros propios contextos y procesos?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-aut">Autocrítica, revisión</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(14)" title="Ir a fila 14">#14</button> <button class="rel-chip" onclick="scrollToRow(64)" title="Ir a fila 64">#64</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Pregunta sobre la necesidad de construir metodologías de evaluación propias que no repliquen los indicadores y lógicas del norte global.</td>
+    </tr>
+    <tr id="row-63" 
+        data-foro="F2" 
+        data-catd="pod" 
+        data-cate="con"
+        data-sk="persistente">
+      <td class="td-num">62</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Cómo descolonizar el modelo de evaluación respondiendo a nuestros propios contextos y procesos?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-con">Contrahegemónicas</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(11)" title="Ir a fila 11">#11</button> <button class="rel-chip" onclick="scrollToRow(33)" title="Ir a fila 33">#33</button> <button class="rel-chip" onclick="scrollToRow(34)" title="Ir a fila 34">#34</button> <button class="rel-chip" onclick="scrollToRow(35)" title="Ir a fila 35">#35</button> <button class="rel-chip" onclick="scrollToRow(50)" title="Ir a fila 50">#50</button> <button class="rel-chip" onclick="scrollToRow(52)" title="Ir a fila 52">#52</button> <button class="rel-chip" onclick="scrollToRow(75)" title="Ir a fila 75">#75</button> <button class="rel-chip" onclick="scrollToRow(80)" title="Ir a fila 80">#80</button> <button class="rel-chip" onclick="scrollToRow(83)" title="Ir a fila 83">#83</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Cuestiona los modelos de evaluación impuestos desde el norte global y propone que el campo construya sus propias metodologías respondiendo a los contextos y procesos latinoamericanos.</td>
+    </tr>
+    <tr id="row-64" 
+        data-foro="F2" 
+        data-catd="imp" 
+        data-cate="aut"
+        data-sk="latente">
+      <td class="td-num">63</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Qué entendemos por impacto?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-aut">Autocrítica, revisión</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(14)" title="Ir a fila 14">#14</button> <button class="rel-chip" onclick="scrollToRow(62)" title="Ir a fila 62">#62</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Preguntas sobre el vocabulario del campo. Cuestiona si los conceptos que usamos vienen de lógicas externas y si necesitamos definiciones propias.</td>
+    </tr>
+    <tr id="row-65" 
+        data-foro="F2" 
+        data-catd="dud" 
+        data-cate="aut"
+        data-sk="latente">
+      <td class="td-num">64</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Qué es exhibición?</td>
+      <td><span class="pill td-dud">Duda / inclasificable</span></td>
+      <td><span class="pill te-aut">Autocrítica, revisión</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(36)" title="Ir a fila 36">#36</button> <button class="rel-chip" onclick="scrollToRow(44)" title="Ir a fila 44">#44</button> <button class="rel-chip" onclick="scrollToRow(53)" title="Ir a fila 53">#53</button> <button class="rel-chip" onclick="scrollToRow(61)" title="Ir a fila 61">#61</button> <button class="rel-chip" onclick="scrollToRow(68)" title="Ir a fila 68">#68</button> <button class="rel-chip" onclick="scrollToRow(103)" title="Ir a fila 103">#103</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">El concepto de exhibición heredado del modelo industrial puede no describir lo que realmente hace el campo. La pregunta por su definición abre una tensión que el campo no ha cerrado.</td>
+    </tr>
+    <tr id="row-66" 
+        data-foro="F2" 
+        data-catd="dis" 
+        data-cate="aut"
+        data-sk="latente">
+      <td class="td-num">65</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Qué es distribución?</td>
+      <td><span class="pill td-dis">Distribución y/o circulación y audiencias</span></td>
+      <td><span class="pill te-aut">Autocrítica, revisión</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(102)" title="Ir a fila 102">#102</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Cuestiona si la palabra distribución sirve para nombrar lo que realmente hace el campo o si reproduce sin querer la lógica industrial que se quiere desmontar.</td>
+    </tr>
+    <tr id="row-67" 
+        data-foro="F2" 
+        data-catd="pod" 
+        data-cate="aut"
+        data-sk="latente">
+      <td class="td-num">66</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Qué lenguajes estamos usando? ¿Qué palabras debemos abandonar?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-aut">Autocrítica, revisión</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(72)" title="Ir a fila 72">#72</button> <button class="rel-chip" onclick="scrollToRow(81)" title="Ir a fila 81">#81</button> <button class="rel-chip" onclick="scrollToRow(107)" title="Ir a fila 107">#107</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Pregunta sobre el poder del vocabulario: qué términos reproducen lógicas hegemónicas y cuáles necesitamos construir desde nuestras propias prácticas.</td>
+    </tr>
+    <tr id="row-68" 
+        data-foro="F2" 
+        data-catd="dud" 
+        data-cate="aut"
+        data-sk="latente">
+      <td class="td-num">67</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Qué lenguajes estamos usando? ¿Qué palabras debemos abandonar?</td>
+      <td><span class="pill td-dud">Duda / inclasificable</span></td>
+      <td><span class="pill te-aut">Autocrítica, revisión</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(36)" title="Ir a fila 36">#36</button> <button class="rel-chip" onclick="scrollToRow(44)" title="Ir a fila 44">#44</button> <button class="rel-chip" onclick="scrollToRow(53)" title="Ir a fila 53">#53</button> <button class="rel-chip" onclick="scrollToRow(61)" title="Ir a fila 61">#61</button> <button class="rel-chip" onclick="scrollToRow(65)" title="Ir a fila 65">#65</button> <button class="rel-chip" onclick="scrollToRow(103)" title="Ir a fila 103">#103</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">El campo cuestiona que las palabras que usa puedan reproducir las lógicas hegemónicas que quiere desmontar. Esta pregunta tiene dimensiones de poder y autocrítica que no caben en una sola categoría.</td>
+    </tr>
+    <tr id="row-69" 
+        data-foro="F2" 
+        data-catd="eco" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">68</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Cómo hacer para reforzar mutuamente nuestras narrativas entre organizaciones?</td>
+      <td><span class="pill td-eco">Ecosistema y sostenibilidad</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(8)" title="Ir a fila 8">#8</button> <button class="rel-chip" onclick="scrollToRow(16)" title="Ir a fila 16">#16</button> <button class="rel-chip" onclick="scrollToRow(17)" title="Ir a fila 17">#17</button> <button class="rel-chip" onclick="scrollToRow(24)" title="Ir a fila 24">#24</button> <button class="rel-chip" onclick="scrollToRow(25)" title="Ir a fila 25">#25</button> <button class="rel-chip" onclick="scrollToRow(71)" title="Ir a fila 71">#71</button> <button class="rel-chip" onclick="scrollToRow(89)" title="Ir a fila 89">#89</button> <button class="rel-chip" onclick="scrollToRow(97)" title="Ir a fila 97">#97</button> <button class="rel-chip" onclick="scrollToRow(98)" title="Ir a fila 98">#98</button> <button class="rel-chip" onclick="scrollToRow(99)" title="Ir a fila 99">#99</button> <button class="rel-chip" onclick="scrollToRow(108)" title="Ir a fila 108">#108</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre la colaboración narrativa entre organizaciones del campo para amplificar el alcance e impacto de los mensajes comunes.</td>
+    </tr>
+    <tr id="row-70" 
+        data-foro="F2" 
+        data-catd="nar" 
+        data-cate="pra"
+        data-sk="latente">
+      <td class="td-num">69</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Cómo hacer para reforzar mutuamente nuestras narrativas entre organizaciones?</td>
+      <td><span class="pill td-nar">Narrativas y representación</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(5)" title="Ir a fila 5">#5</button> <button class="rel-chip" onclick="scrollToRow(7)" title="Ir a fila 7">#7</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Busca formas concretas de colaboración narrativa entre organizaciones del campo para amplificar el alcance e impacto de los mensajes comunes, desde la práctica de la representación compartida.</td>
+    </tr>
+    <tr id="row-71" 
+        data-foro="F2" 
+        data-catd="eco" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">70</td>
+      <td><span class="fb f2">Foro II</span></td>
+      <td class="td-q">¿Cuál es el plan de crecimiento para centrarse en lo importante de la práctica?</td>
+      <td><span class="pill td-eco">Ecosistema y sostenibilidad</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(8)" title="Ir a fila 8">#8</button> <button class="rel-chip" onclick="scrollToRow(16)" title="Ir a fila 16">#16</button> <button class="rel-chip" onclick="scrollToRow(17)" title="Ir a fila 17">#17</button> <button class="rel-chip" onclick="scrollToRow(24)" title="Ir a fila 24">#24</button> <button class="rel-chip" onclick="scrollToRow(25)" title="Ir a fila 25">#25</button> <button class="rel-chip" onclick="scrollToRow(69)" title="Ir a fila 69">#69</button> <button class="rel-chip" onclick="scrollToRow(89)" title="Ir a fila 89">#89</button> <button class="rel-chip" onclick="scrollToRow(97)" title="Ir a fila 97">#97</button> <button class="rel-chip" onclick="scrollToRow(98)" title="Ir a fila 98">#98</button> <button class="rel-chip" onclick="scrollToRow(99)" title="Ir a fila 99">#99</button> <button class="rel-chip" onclick="scrollToRow(108)" title="Ir a fila 108">#108</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre la sostenibilidad estratégica de las organizaciones: cómo crecer sin perder el foco en la misión y los valores del campo.</td>
+    </tr>
+    <tr id="row-72" 
+        data-foro="F3" 
+        data-catd="pod" 
+        data-cate="aut"
+        data-sk="latente">
+      <td class="td-num">71</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo nos disputamos el poder narrativo al hacer cine para representarnos a nosotres mismes, sin reproducir las prácticas del poder hegemónico que todes llevamos dentro?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-aut">Autocrítica, revisión</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(67)" title="Ir a fila 67">#67</button> <button class="rel-chip" onclick="scrollToRow(81)" title="Ir a fila 81">#81</button> <button class="rel-chip" onclick="scrollToRow(107)" title="Ir a fila 107">#107</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Pregunta sobre la contradicción de querer descolonizar la representación usando herramientas y lógicas que también hemos internalizado.</td>
+    </tr>
+    <tr id="row-73" 
+        data-foro="F3" 
+        data-catd="nar" 
+        data-cate="con"
+        data-sk="aislada">
+      <td class="td-num">72</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo nos disputamos el poder narrativo al hacer cine para representarnos a nosotres mismes, sin reproducir las prácticas del poder hegemónico que todes llevamos dentro?</td>
+      <td><span class="pill td-nar">Narrativas y representación</span></td>
+      <td><span class="pill te-con">Contrahegemónicas</span></td>
+      <td class="td-rel"><span class="rel-empty">—</span></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Cuestiona las estructuras de poder que determinan quién puede representarse y cómo, señalando que el campo mismo puede reproducir sin darse cuenta las prácticas hegemónicas de representación.</td>
+    </tr>
+    <tr id="row-74" 
+        data-foro="F3" 
+        data-catd="eco" 
+        data-cate="ima"
+        data-sk="aislada">
+      <td class="td-num">73</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo podemos pasar de ser muchos cines pequeños y aislados que le hablan a las mismas personas a ser un gran proceso colectivo que le hace frente al poder hegemónico?</td>
+      <td><span class="pill td-eco">Ecosistema y sostenibilidad</span></td>
+      <td><span class="pill te-ima">Imaginación o futuros</span></td>
+      <td class="td-rel"><span class="rel-empty">—</span></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Pregunta sobre la articulación del campo como movimiento colectivo con mayor capacidad de incidencia, más allá de los proyectos individuales.</td>
+    </tr>
+    <tr id="row-75" 
+        data-foro="F3" 
+        data-catd="pod" 
+        data-cate="con"
+        data-sk="persistente">
+      <td class="td-num">74</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo podemos pasar de ser muchos cines pequeños y aislados que le hablan a las mismas personas a ser un gran proceso colectivo que le hace frente al poder hegemónico?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-con">Contrahegemónicas</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(11)" title="Ir a fila 11">#11</button> <button class="rel-chip" onclick="scrollToRow(33)" title="Ir a fila 33">#33</button> <button class="rel-chip" onclick="scrollToRow(34)" title="Ir a fila 34">#34</button> <button class="rel-chip" onclick="scrollToRow(35)" title="Ir a fila 35">#35</button> <button class="rel-chip" onclick="scrollToRow(50)" title="Ir a fila 50">#50</button> <button class="rel-chip" onclick="scrollToRow(52)" title="Ir a fila 52">#52</button> <button class="rel-chip" onclick="scrollToRow(63)" title="Ir a fila 63">#63</button> <button class="rel-chip" onclick="scrollToRow(80)" title="Ir a fila 80">#80</button> <button class="rel-chip" onclick="scrollToRow(83)" title="Ir a fila 83">#83</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Cuestiona el modelo hegemónico que fragmenta y aísla al campo latinoamericano, señalando la necesidad de oponerse colectivamente al poder dominante desde una fuerza común.</td>
+    </tr>
+    <tr id="row-76" 
+        data-foro="F3" 
+        data-catd="pod" 
+        data-cate="rel"
+        data-sk="aislada">
+      <td class="td-num">75</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo se conectan las heridas de la comunidad con la historia?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-rel">Relacionales, cuidado</span></td>
+      <td class="td-rel"><span class="rel-empty">—</span></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Pregunta por la relación entre la memoria histórica del territorio, el trauma colectivo y la narración cinematográfica como forma de dar cuenta de lo que el poder ha hecho sobre los cuerpos y los lugares.</td>
+    </tr>
+    <tr id="row-77" 
+        data-foro="F3" 
+        data-catd="nar" 
+        data-cate="ima"
+        data-sk="aislada">
+      <td class="td-num">76</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo se conectan las heridas de la comunidad con la historia?</td>
+      <td><span class="pill td-nar">Narrativas y representación</span></td>
+      <td><span class="pill te-ima">Imaginación o futuros</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(110)" title="Ir a fila 110">#110</button></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Pregunta sobre la relación entre memoria histórica, trauma colectivo y narración cinematográfica como forma de dar cuenta de lo vivido.</td>
+    </tr>
+    <tr id="row-78" 
+        data-foro="F3" 
+        data-catd="pod" 
+        data-cate="ima"
+        data-sk="aislada">
+      <td class="td-num">77</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo el cine acompaña las heridas? ¿Quieren esas heridas ser reparadas por el cine?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-ima">Imaginación o futuros</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(82)" title="Ir a fila 82">#82</button></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Interroga los límites y las posibilidades del cine como herramienta de sanación, introduciendo además el punto de vista de las propias comunidades sobre si quieren que su dolor sea reparado por el cine.</td>
+    </tr>
+    <tr id="row-79" 
+        data-foro="F3" 
+        data-catd="nar" 
+        data-cate="rel"
+        data-sk="aislada">
+      <td class="td-num">78</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo el cine acompaña las heridas? ¿Quieren esas heridas ser reparadas por el cine?</td>
+      <td><span class="pill td-nar">Narrativas y representación</span></td>
+      <td><span class="pill te-rel">Relacionales, cuidado</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(100)" title="Ir a fila 100">#100</button></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Pregunta que cuestiona el alcance del cine como herramienta de sanación e introduce el punto de vista de las comunidades sobre su propio dolor.</td>
+    </tr>
+    <tr id="row-80" 
+        data-foro="F3" 
+        data-catd="pod" 
+        data-cate="con"
+        data-sk="persistente">
+      <td class="td-num">79</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cuáles son los mecanismos de validación del cine? ¿Festivales, salas, fondos, políticas públicas, audiencia, taquilla, técnica?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-con">Contrahegemónicas</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(11)" title="Ir a fila 11">#11</button> <button class="rel-chip" onclick="scrollToRow(33)" title="Ir a fila 33">#33</button> <button class="rel-chip" onclick="scrollToRow(34)" title="Ir a fila 34">#34</button> <button class="rel-chip" onclick="scrollToRow(35)" title="Ir a fila 35">#35</button> <button class="rel-chip" onclick="scrollToRow(50)" title="Ir a fila 50">#50</button> <button class="rel-chip" onclick="scrollToRow(52)" title="Ir a fila 52">#52</button> <button class="rel-chip" onclick="scrollToRow(63)" title="Ir a fila 63">#63</button> <button class="rel-chip" onclick="scrollToRow(75)" title="Ir a fila 75">#75</button> <button class="rel-chip" onclick="scrollToRow(83)" title="Ir a fila 83">#83</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre qué instituciones y criterios definen qué cine vale y cuáles reproducen o cuestionan el poder hegemónico.</td>
+    </tr>
+    <tr id="row-81" 
+        data-foro="F3" 
+        data-catd="pod" 
+        data-cate="aut"
+        data-sk="latente">
+      <td class="td-num">80</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo hacer un cine decolonial con herramientas coloniales?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-aut">Autocrítica, revisión</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(67)" title="Ir a fila 67">#67</button> <button class="rel-chip" onclick="scrollToRow(72)" title="Ir a fila 72">#72</button> <button class="rel-chip" onclick="scrollToRow(107)" title="Ir a fila 107">#107</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Una de las tensiones más profundas del campo: la contradicción entre el deseo decolonial y los instrumentos, formatos y financiamientos que vienen del sistema que se quiere desmontar.</td>
+    </tr>
+    <tr id="row-82" 
+        data-foro="F3" 
+        data-catd="pod" 
+        data-cate="ima"
+        data-sk="aislada">
+      <td class="td-num">81</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo crear nuevos modelos que permitan decolonizar el cine tradicional a partir del cine comunitario?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-ima">Imaginación o futuros</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(78)" title="Ir a fila 78">#78</button></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Pregunta propositiva sobre cómo el cine comunitario puede construir alternativas reales a los modelos hegemónicos de producción y distribución.</td>
+    </tr>
+    <tr id="row-83" 
+        data-foro="F3" 
+        data-catd="pod" 
+        data-cate="con"
+        data-sk="persistente">
+      <td class="td-num">82</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Son los modos de producción la clave para la descolonización?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-con">Contrahegemónicas</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(11)" title="Ir a fila 11">#11</button> <button class="rel-chip" onclick="scrollToRow(33)" title="Ir a fila 33">#33</button> <button class="rel-chip" onclick="scrollToRow(34)" title="Ir a fila 34">#34</button> <button class="rel-chip" onclick="scrollToRow(35)" title="Ir a fila 35">#35</button> <button class="rel-chip" onclick="scrollToRow(50)" title="Ir a fila 50">#50</button> <button class="rel-chip" onclick="scrollToRow(52)" title="Ir a fila 52">#52</button> <button class="rel-chip" onclick="scrollToRow(63)" title="Ir a fila 63">#63</button> <button class="rel-chip" onclick="scrollToRow(75)" title="Ir a fila 75">#75</button> <button class="rel-chip" onclick="scrollToRow(80)" title="Ir a fila 80">#80</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre si el cambio debe ocurrir en los procesos de producción o también en otros niveles: narrativo, político y económico.</td>
+    </tr>
+    <tr id="row-84" 
+        data-foro="F3" 
+        data-catd="eco" 
+        data-cate="con"
+        data-sk="aislada">
+      <td class="td-num">83</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Es necesaria una gran estructura para tener una experiencia de cine?</td>
+      <td><span class="pill td-eco">Ecosistema y sostenibilidad</span></td>
+      <td><span class="pill te-con">Contrahegemónicas</span></td>
+      <td class="td-rel"><span class="rel-empty">—</span></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Cuestiona la dependencia de infraestructura industrial para que el cine ocurra y se sostenga. Pregunta por los modelos mínimos y alternativos que hacen posible el ecosistema comunitario.</td>
+    </tr>
+    <tr id="row-85" 
+        data-foro="F3" 
+        data-catd="dis" 
+        data-cate="ima"
+        data-sk="aislada">
+      <td class="td-num">84</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Es necesaria una gran estructura para tener una experiencia de cine?</td>
+      <td><span class="pill td-dis">Distribución y/o circulación y audiencias</span></td>
+      <td><span class="pill te-ima">Imaginación o futuros</span></td>
+      <td class="td-rel"><span class="rel-empty">—</span></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Pregunta sobre los modelos mínimos y alternativos de exhibición. Cuestiona la dependencia de infraestructura industrial para que el cine llegue a las comunidades.</td>
+    </tr>
+    <tr id="row-86" 
+        data-foro="F3" 
+        data-catd="dis" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">85</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo crear un mapeo de experiencias replicables de formación de audiencias?</td>
+      <td><span class="pill td-dis">Distribución y/o circulación y audiencias</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(18)" title="Ir a fila 18">#18</button> <button class="rel-chip" onclick="scrollToRow(29)" title="Ir a fila 29">#29</button> <button class="rel-chip" onclick="scrollToRow(30)" title="Ir a fila 30">#30</button> <button class="rel-chip" onclick="scrollToRow(48)" title="Ir a fila 48">#48</button> <button class="rel-chip" onclick="scrollToRow(49)" title="Ir a fila 49">#49</button> <button class="rel-chip" onclick="scrollToRow(54)" title="Ir a fila 54">#54</button> <button class="rel-chip" onclick="scrollToRow(87)" title="Ir a fila 87">#87</button> <button class="rel-chip" onclick="scrollToRow(88)" title="Ir a fila 88">#88</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre cómo sistematizar y replicar experiencias de construcción de públicos que funcionen desde la lógica comunitaria y no comercial.</td>
+    </tr>
+    <tr id="row-87" 
+        data-foro="F3" 
+        data-catd="dis" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">86</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo tener presente a la audiencia principal en todas las etapas del ecosistema audiovisual?</td>
+      <td><span class="pill td-dis">Distribución y/o circulación y audiencias</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(18)" title="Ir a fila 18">#18</button> <button class="rel-chip" onclick="scrollToRow(29)" title="Ir a fila 29">#29</button> <button class="rel-chip" onclick="scrollToRow(30)" title="Ir a fila 30">#30</button> <button class="rel-chip" onclick="scrollToRow(48)" title="Ir a fila 48">#48</button> <button class="rel-chip" onclick="scrollToRow(49)" title="Ir a fila 49">#49</button> <button class="rel-chip" onclick="scrollToRow(54)" title="Ir a fila 54">#54</button> <button class="rel-chip" onclick="scrollToRow(86)" title="Ir a fila 86">#86</button> <button class="rel-chip" onclick="scrollToRow(88)" title="Ir a fila 88">#88</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre cómo integrar a las comunidades destinatarias desde la producción, no solo en la distribución o exhibición.</td>
+    </tr>
+    <tr id="row-88" 
+        data-foro="F3" 
+        data-catd="dis" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">87</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo se puede diseñar una experiencia cinematográfica sostenible que interpele a las audiencias?</td>
+      <td><span class="pill td-dis">Distribución y/o circulación y audiencias</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(18)" title="Ir a fila 18">#18</button> <button class="rel-chip" onclick="scrollToRow(29)" title="Ir a fila 29">#29</button> <button class="rel-chip" onclick="scrollToRow(30)" title="Ir a fila 30">#30</button> <button class="rel-chip" onclick="scrollToRow(48)" title="Ir a fila 48">#48</button> <button class="rel-chip" onclick="scrollToRow(49)" title="Ir a fila 49">#49</button> <button class="rel-chip" onclick="scrollToRow(54)" title="Ir a fila 54">#54</button> <button class="rel-chip" onclick="scrollToRow(86)" title="Ir a fila 86">#86</button> <button class="rel-chip" onclick="scrollToRow(87)" title="Ir a fila 87">#87</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre cómo construir experiencias de cine que sostengan el diálogo con las audiencias más allá de la proyección puntual.</td>
+    </tr>
+    <tr id="row-89" 
+        data-foro="F3" 
+        data-catd="eco" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">88</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo formar creadores capaces de desarrollar proyectos cinematográficos conscientes de su potencial de impacto?</td>
+      <td><span class="pill td-eco">Ecosistema y sostenibilidad</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(8)" title="Ir a fila 8">#8</button> <button class="rel-chip" onclick="scrollToRow(16)" title="Ir a fila 16">#16</button> <button class="rel-chip" onclick="scrollToRow(17)" title="Ir a fila 17">#17</button> <button class="rel-chip" onclick="scrollToRow(24)" title="Ir a fila 24">#24</button> <button class="rel-chip" onclick="scrollToRow(25)" title="Ir a fila 25">#25</button> <button class="rel-chip" onclick="scrollToRow(69)" title="Ir a fila 69">#69</button> <button class="rel-chip" onclick="scrollToRow(71)" title="Ir a fila 71">#71</button> <button class="rel-chip" onclick="scrollToRow(97)" title="Ir a fila 97">#97</button> <button class="rel-chip" onclick="scrollToRow(98)" title="Ir a fila 98">#98</button> <button class="rel-chip" onclick="scrollToRow(99)" title="Ir a fila 99">#99</button> <button class="rel-chip" onclick="scrollToRow(108)" title="Ir a fila 108">#108</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre la formación como condición de sostenibilidad del campo: cómo construir una nueva generación con conciencia política y metodológica.</td>
+    </tr>
+    <tr id="row-90" 
+        data-foro="F3" 
+        data-catd="imp" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">89</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo formar creadores capaces de desarrollar proyectos cinematográficos conscientes de su potencial de impacto?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(6)" title="Ir a fila 6">#6</button> <button class="rel-chip" onclick="scrollToRow(9)" title="Ir a fila 9">#9</button> <button class="rel-chip" onclick="scrollToRow(12)" title="Ir a fila 12">#12</button> <button class="rel-chip" onclick="scrollToRow(19)" title="Ir a fila 19">#19</button> <button class="rel-chip" onclick="scrollToRow(23)" title="Ir a fila 23">#23</button> <button class="rel-chip" onclick="scrollToRow(55)" title="Ir a fila 55">#55</button> <button class="rel-chip" onclick="scrollToRow(58)" title="Ir a fila 58">#58</button> <button class="rel-chip" onclick="scrollToRow(59)" title="Ir a fila 59">#59</button> <button class="rel-chip" onclick="scrollToRow(60)" title="Ir a fila 60">#60</button> <button class="rel-chip" onclick="scrollToRow(91)" title="Ir a fila 91">#91</button> <button class="rel-chip" onclick="scrollToRow(92)" title="Ir a fila 92">#92</button> <button class="rel-chip" onclick="scrollToRow(93)" title="Ir a fila 93">#93</button> <button class="rel-chip" onclick="scrollToRow(95)" title="Ir a fila 95">#95</button> <button class="rel-chip" onclick="scrollToRow(96)" title="Ir a fila 96">#96</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Busca herramientas formativas que desarrollen en los creadores una conciencia del potencial de impacto de su trabajo, entendiendo la formación como condición de sostenibilidad del campo.</td>
+    </tr>
+    <tr id="row-91" 
+        data-foro="F3" 
+        data-catd="imp" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">90</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo aterrizar los modelos de evaluación respondiendo a las diversidades del ecosistema y teniendo en cuenta el cuidado, la apropiación y la sostenibilidad?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(6)" title="Ir a fila 6">#6</button> <button class="rel-chip" onclick="scrollToRow(9)" title="Ir a fila 9">#9</button> <button class="rel-chip" onclick="scrollToRow(12)" title="Ir a fila 12">#12</button> <button class="rel-chip" onclick="scrollToRow(19)" title="Ir a fila 19">#19</button> <button class="rel-chip" onclick="scrollToRow(23)" title="Ir a fila 23">#23</button> <button class="rel-chip" onclick="scrollToRow(55)" title="Ir a fila 55">#55</button> <button class="rel-chip" onclick="scrollToRow(58)" title="Ir a fila 58">#58</button> <button class="rel-chip" onclick="scrollToRow(59)" title="Ir a fila 59">#59</button> <button class="rel-chip" onclick="scrollToRow(60)" title="Ir a fila 60">#60</button> <button class="rel-chip" onclick="scrollToRow(90)" title="Ir a fila 90">#90</button> <button class="rel-chip" onclick="scrollToRow(92)" title="Ir a fila 92">#92</button> <button class="rel-chip" onclick="scrollToRow(93)" title="Ir a fila 93">#93</button> <button class="rel-chip" onclick="scrollToRow(95)" title="Ir a fila 95">#95</button> <button class="rel-chip" onclick="scrollToRow(96)" title="Ir a fila 96">#96</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre cómo adaptar los modelos de evaluación a la diversidad de contextos latinoamericanos sin perder los principios éticos del campo.</td>
+    </tr>
+    <tr id="row-92" 
+        data-foro="F3" 
+        data-catd="imp" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">91</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo establecer sistemas diversos de evaluación para entender, reconocer y comunicar los diferentes grados de impacto en los corazones de los públicos?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(6)" title="Ir a fila 6">#6</button> <button class="rel-chip" onclick="scrollToRow(9)" title="Ir a fila 9">#9</button> <button class="rel-chip" onclick="scrollToRow(12)" title="Ir a fila 12">#12</button> <button class="rel-chip" onclick="scrollToRow(19)" title="Ir a fila 19">#19</button> <button class="rel-chip" onclick="scrollToRow(23)" title="Ir a fila 23">#23</button> <button class="rel-chip" onclick="scrollToRow(55)" title="Ir a fila 55">#55</button> <button class="rel-chip" onclick="scrollToRow(58)" title="Ir a fila 58">#58</button> <button class="rel-chip" onclick="scrollToRow(59)" title="Ir a fila 59">#59</button> <button class="rel-chip" onclick="scrollToRow(60)" title="Ir a fila 60">#60</button> <button class="rel-chip" onclick="scrollToRow(90)" title="Ir a fila 90">#90</button> <button class="rel-chip" onclick="scrollToRow(91)" title="Ir a fila 91">#91</button> <button class="rel-chip" onclick="scrollToRow(93)" title="Ir a fila 93">#93</button> <button class="rel-chip" onclick="scrollToRow(95)" title="Ir a fila 95">#95</button> <button class="rel-chip" onclick="scrollToRow(96)" title="Ir a fila 96">#96</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre cómo construir sistemas que den cuenta de la profundidad del cambio, incluyendo dimensiones subjetivas y emocionales.</td>
+    </tr>
+    <tr id="row-93" 
+        data-foro="F3" 
+        data-catd="imp" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">92</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo medir las transformaciones generadas durante los procesos de creación de las películas?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(6)" title="Ir a fila 6">#6</button> <button class="rel-chip" onclick="scrollToRow(9)" title="Ir a fila 9">#9</button> <button class="rel-chip" onclick="scrollToRow(12)" title="Ir a fila 12">#12</button> <button class="rel-chip" onclick="scrollToRow(19)" title="Ir a fila 19">#19</button> <button class="rel-chip" onclick="scrollToRow(23)" title="Ir a fila 23">#23</button> <button class="rel-chip" onclick="scrollToRow(55)" title="Ir a fila 55">#55</button> <button class="rel-chip" onclick="scrollToRow(58)" title="Ir a fila 58">#58</button> <button class="rel-chip" onclick="scrollToRow(59)" title="Ir a fila 59">#59</button> <button class="rel-chip" onclick="scrollToRow(60)" title="Ir a fila 60">#60</button> <button class="rel-chip" onclick="scrollToRow(90)" title="Ir a fila 90">#90</button> <button class="rel-chip" onclick="scrollToRow(91)" title="Ir a fila 91">#91</button> <button class="rel-chip" onclick="scrollToRow(92)" title="Ir a fila 92">#92</button> <button class="rel-chip" onclick="scrollToRow(95)" title="Ir a fila 95">#95</button> <button class="rel-chip" onclick="scrollToRow(96)" title="Ir a fila 96">#96</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre la evaluación del proceso y no solo del resultado: el impacto ocurre también durante la producción, no solo después del estreno.</td>
+    </tr>
+    <tr id="row-94" 
+        data-foro="F3" 
+        data-catd="imp" 
+        data-cate="rel"
+        data-sk="latente">
+      <td class="td-num">93</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">Teniendo en cuenta lo que se quiere evaluar, ¿cómo cruzar la información entre quien plantea las preguntas y quien tiene las respuestas?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-rel">Relacionales, cuidado</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(13)" title="Ir a fila 13">#13</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Pregunta sobre la brecha entre quienes diseñan la evaluación y quienes la viven. Apunta a una evaluación más horizontal y participativa.</td>
+    </tr>
+    <tr id="row-95" 
+        data-foro="F3" 
+        data-catd="imp" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">94</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo acordar un catálogo de criterios para evaluar los impactos de un filme?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(6)" title="Ir a fila 6">#6</button> <button class="rel-chip" onclick="scrollToRow(9)" title="Ir a fila 9">#9</button> <button class="rel-chip" onclick="scrollToRow(12)" title="Ir a fila 12">#12</button> <button class="rel-chip" onclick="scrollToRow(19)" title="Ir a fila 19">#19</button> <button class="rel-chip" onclick="scrollToRow(23)" title="Ir a fila 23">#23</button> <button class="rel-chip" onclick="scrollToRow(55)" title="Ir a fila 55">#55</button> <button class="rel-chip" onclick="scrollToRow(58)" title="Ir a fila 58">#58</button> <button class="rel-chip" onclick="scrollToRow(59)" title="Ir a fila 59">#59</button> <button class="rel-chip" onclick="scrollToRow(60)" title="Ir a fila 60">#60</button> <button class="rel-chip" onclick="scrollToRow(90)" title="Ir a fila 90">#90</button> <button class="rel-chip" onclick="scrollToRow(91)" title="Ir a fila 91">#91</button> <button class="rel-chip" onclick="scrollToRow(92)" title="Ir a fila 92">#92</button> <button class="rel-chip" onclick="scrollToRow(93)" title="Ir a fila 93">#93</button> <button class="rel-chip" onclick="scrollToRow(96)" title="Ir a fila 96">#96</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre la construcción colectiva de estándares compartidos de evaluación reconocidos por el campo latinoamericano.</td>
+    </tr>
+    <tr id="row-96" 
+        data-foro="F3" 
+        data-catd="imp" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">95</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo generamos y compartimos una metodología colectiva para evaluar procesos de impacto social?</td>
+      <td><span class="pill td-imp">Impacto y evaluación</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(6)" title="Ir a fila 6">#6</button> <button class="rel-chip" onclick="scrollToRow(9)" title="Ir a fila 9">#9</button> <button class="rel-chip" onclick="scrollToRow(12)" title="Ir a fila 12">#12</button> <button class="rel-chip" onclick="scrollToRow(19)" title="Ir a fila 19">#19</button> <button class="rel-chip" onclick="scrollToRow(23)" title="Ir a fila 23">#23</button> <button class="rel-chip" onclick="scrollToRow(55)" title="Ir a fila 55">#55</button> <button class="rel-chip" onclick="scrollToRow(58)" title="Ir a fila 58">#58</button> <button class="rel-chip" onclick="scrollToRow(59)" title="Ir a fila 59">#59</button> <button class="rel-chip" onclick="scrollToRow(60)" title="Ir a fila 60">#60</button> <button class="rel-chip" onclick="scrollToRow(90)" title="Ir a fila 90">#90</button> <button class="rel-chip" onclick="scrollToRow(91)" title="Ir a fila 91">#91</button> <button class="rel-chip" onclick="scrollToRow(92)" title="Ir a fila 92">#92</button> <button class="rel-chip" onclick="scrollToRow(93)" title="Ir a fila 93">#93</button> <button class="rel-chip" onclick="scrollToRow(95)" title="Ir a fila 95">#95</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre cómo el campo puede construir y compartir metodologías de evaluación propias, latinoamericanas y colectivas.</td>
+    </tr>
+    <tr id="row-97" 
+        data-foro="F3" 
+        data-catd="eco" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">96</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo crear y fortalecer políticas públicas que prioricen la distribución y circulación independiente?</td>
+      <td><span class="pill td-eco">Ecosistema y sostenibilidad</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(8)" title="Ir a fila 8">#8</button> <button class="rel-chip" onclick="scrollToRow(16)" title="Ir a fila 16">#16</button> <button class="rel-chip" onclick="scrollToRow(17)" title="Ir a fila 17">#17</button> <button class="rel-chip" onclick="scrollToRow(24)" title="Ir a fila 24">#24</button> <button class="rel-chip" onclick="scrollToRow(25)" title="Ir a fila 25">#25</button> <button class="rel-chip" onclick="scrollToRow(69)" title="Ir a fila 69">#69</button> <button class="rel-chip" onclick="scrollToRow(71)" title="Ir a fila 71">#71</button> <button class="rel-chip" onclick="scrollToRow(89)" title="Ir a fila 89">#89</button> <button class="rel-chip" onclick="scrollToRow(98)" title="Ir a fila 98">#98</button> <button class="rel-chip" onclick="scrollToRow(99)" title="Ir a fila 99">#99</button> <button class="rel-chip" onclick="scrollToRow(108)" title="Ir a fila 108">#108</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre incidencia política: cómo traducir los aprendizajes del campo en demandas concretas de política pública para el audiovisual.</td>
+    </tr>
+    <tr id="row-98" 
+        data-foro="F3" 
+        data-catd="eco" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">97</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo podemos tejer y fortalecer una red de apoyo y colaboración para el cine latinoamericano?</td>
+      <td><span class="pill td-eco">Ecosistema y sostenibilidad</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(8)" title="Ir a fila 8">#8</button> <button class="rel-chip" onclick="scrollToRow(16)" title="Ir a fila 16">#16</button> <button class="rel-chip" onclick="scrollToRow(17)" title="Ir a fila 17">#17</button> <button class="rel-chip" onclick="scrollToRow(24)" title="Ir a fila 24">#24</button> <button class="rel-chip" onclick="scrollToRow(25)" title="Ir a fila 25">#25</button> <button class="rel-chip" onclick="scrollToRow(69)" title="Ir a fila 69">#69</button> <button class="rel-chip" onclick="scrollToRow(71)" title="Ir a fila 71">#71</button> <button class="rel-chip" onclick="scrollToRow(89)" title="Ir a fila 89">#89</button> <button class="rel-chip" onclick="scrollToRow(97)" title="Ir a fila 97">#97</button> <button class="rel-chip" onclick="scrollToRow(99)" title="Ir a fila 99">#99</button> <button class="rel-chip" onclick="scrollToRow(108)" title="Ir a fila 108">#108</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre la construcción de redes de solidaridad y colaboración que sostengan el campo más allá de los encuentros presenciales.</td>
+    </tr>
+    <tr id="row-99" 
+        data-foro="F3" 
+        data-catd="eco" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">98</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">Después de tres ediciones del foro, ¿cómo se mantiene y articula esta red viva como una comunidad de práctica?</td>
+      <td><span class="pill td-eco">Ecosistema y sostenibilidad</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(8)" title="Ir a fila 8">#8</button> <button class="rel-chip" onclick="scrollToRow(16)" title="Ir a fila 16">#16</button> <button class="rel-chip" onclick="scrollToRow(17)" title="Ir a fila 17">#17</button> <button class="rel-chip" onclick="scrollToRow(24)" title="Ir a fila 24">#24</button> <button class="rel-chip" onclick="scrollToRow(25)" title="Ir a fila 25">#25</button> <button class="rel-chip" onclick="scrollToRow(69)" title="Ir a fila 69">#69</button> <button class="rel-chip" onclick="scrollToRow(71)" title="Ir a fila 71">#71</button> <button class="rel-chip" onclick="scrollToRow(89)" title="Ir a fila 89">#89</button> <button class="rel-chip" onclick="scrollToRow(97)" title="Ir a fila 97">#97</button> <button class="rel-chip" onclick="scrollToRow(98)" title="Ir a fila 98">#98</button> <button class="rel-chip" onclick="scrollToRow(108)" title="Ir a fila 108">#108</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre la sostenibilidad del propio foro y de la red que genera. Cómo pasar de encuentros periódicos a una comunidad activa y permanente.</td>
+    </tr>
+    <tr id="row-100" 
+        data-foro="F3" 
+        data-catd="nar" 
+        data-cate="rel"
+        data-sk="aislada">
+      <td class="td-num">99</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Qué hacemos con esa herida que nos marcó los cuerpos?</td>
+      <td><span class="pill td-nar">Narrativas y representación</span></td>
+      <td><span class="pill te-rel">Relacionales, cuidado</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(79)" title="Ir a fila 79">#79</button></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Pregunta sobre cómo el cuerpo y la memoria del trauma colectivo se convierten en materia narrativa. La herida como punto de partida para contar y para sanar.</td>
+    </tr>
+    <tr id="row-101" 
+        data-foro="F3" 
+        data-catd="pod" 
+        data-cate="ide"
+        data-sk="latente">
+      <td class="td-num">100</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Qué hacemos con esa herida que nos marcó los cuerpos?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-ide">Identidad, sentido, posicionamiento</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(32)" title="Ir a fila 32">#32</button> <button class="rel-chip" onclick="scrollToRow(38)" title="Ir a fila 38">#38</button> <button class="rel-chip" onclick="scrollToRow(39)" title="Ir a fila 39">#39</button> <button class="rel-chip" onclick="scrollToRow(43)" title="Ir a fila 43">#43</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Pregunta por el sentido político de trabajar con la memoria del dolor colectivo: qué postura asume el campo frente a las heridas que lo territorio y los cuerpos acumulan.</td>
+    </tr>
+    <tr id="row-102" 
+        data-foro="F3" 
+        data-catd="dis" 
+        data-cate="aut"
+        data-sk="latente">
+      <td class="td-num">101</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Sería mejor usar la palabra "circulación" en lugar de "distribución"?</td>
+      <td><span class="pill td-dis">Distribución y/o circulación y audiencias</span></td>
+      <td><span class="pill te-aut">Autocrítica, revisión</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(66)" title="Ir a fila 66">#66</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Pregunta del Manifiesto de Distribución sobre si el vocabulario del campo reproduce sin querer la lógica industrial que quiere desmontar.</td>
+    </tr>
+    <tr id="row-103" 
+        data-foro="F3" 
+        data-catd="dud" 
+        data-cate="aut"
+        data-sk="latente">
+      <td class="td-num">102</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Sería mejor usar la palabra "circulación" en lugar de "distribución"?</td>
+      <td><span class="pill td-dud">Duda / inclasificable</span></td>
+      <td><span class="pill te-aut">Autocrítica, revisión</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(36)" title="Ir a fila 36">#36</button> <button class="rel-chip" onclick="scrollToRow(44)" title="Ir a fila 44">#44</button> <button class="rel-chip" onclick="scrollToRow(53)" title="Ir a fila 53">#53</button> <button class="rel-chip" onclick="scrollToRow(61)" title="Ir a fila 61">#61</button> <button class="rel-chip" onclick="scrollToRow(65)" title="Ir a fila 65">#65</button> <button class="rel-chip" onclick="scrollToRow(68)" title="Ir a fila 68">#68</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">El campo no ha cerrado esta tensión: si cambiar la palabra distribución por circulación ayuda a desmontar la lógica industrial o si es un cambio cosmético. Es una revisión en proceso.</td>
+    </tr>
+    <tr id="row-104" 
+        data-foro="F3" 
+        data-catd="nar" 
+        data-cate="ide"
+        data-sk="persistente">
+      <td class="td-num">103</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo el cine lo que cambia es la forma en la que vemos el mundo?</td>
+      <td><span class="pill td-nar">Narrativas y representación</span></td>
+      <td><span class="pill te-ide">Identidad, sentido, posicionamiento</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(3)" title="Ir a fila 3">#3</button> <button class="rel-chip" onclick="scrollToRow(21)" title="Ir a fila 21">#21</button> <button class="rel-chip" onclick="scrollToRow(31)" title="Ir a fila 31">#31</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre el poder transformador del cine no como acción directa sino como modificación de la percepción y la mirada colectiva.</td>
+    </tr>
+    <tr id="row-105" 
+        data-foro="F3" 
+        data-catd="com" 
+        data-cate="ima"
+        data-sk="aislada">
+      <td class="td-num">104</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo filmar la ausencia de justicia?</td>
+      <td><span class="pill td-com">Comunidades, ética y cuidado</span></td>
+      <td><span class="pill te-ima">Imaginación o futuros</span></td>
+      <td class="td-rel"><span class="rel-empty">—</span></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Pregunta ética y narrativa sobre cómo representar lo que no tiene imagen: la impunidad, el silencio y la violencia estructural sin revictimizar.</td>
+    </tr>
+    <tr id="row-106" 
+        data-foro="F3" 
+        data-catd="com" 
+        data-cate="rel"
+        data-sk="persistente">
+      <td class="td-num">105</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo generar relaciones de apoyo y respeto con las víctimas y los colectivos activistas?</td>
+      <td><span class="pill td-com">Comunidades, ética y cuidado</span></td>
+      <td><span class="pill te-rel">Relacionales, cuidado</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(22)" title="Ir a fila 22">#22</button> <button class="rel-chip" onclick="scrollToRow(26)" title="Ir a fila 26">#26</button> <button class="rel-chip" onclick="scrollToRow(27)" title="Ir a fila 27">#27</button> <button class="rel-chip" onclick="scrollToRow(28)" title="Ir a fila 28">#28</button> <button class="rel-chip" onclick="scrollToRow(40)" title="Ir a fila 40">#40</button> <button class="rel-chip" onclick="scrollToRow(45)" title="Ir a fila 45">#45</button> <button class="rel-chip" onclick="scrollToRow(46)" title="Ir a fila 46">#46</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre cómo construir vínculos duraderos y éticos con quienes protagonizan historias de lucha y dolor, más allá de la filmación.</td>
+    </tr>
+    <tr id="row-107" 
+        data-foro="F3" 
+        data-catd="pod" 
+        data-cate="aut"
+        data-sk="latente">
+      <td class="td-num">106</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo incidimos en los propios colectivos cuando replicamos violencias estructurales hacia adentro?</td>
+      <td><span class="pill td-pod">Poder y decolonialidad</span></td>
+      <td><span class="pill te-aut">Autocrítica, revisión</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(67)" title="Ir a fila 67">#67</button> <button class="rel-chip" onclick="scrollToRow(72)" title="Ir a fila 72">#72</button> <button class="rel-chip" onclick="scrollToRow(81)" title="Ir a fila 81">#81</button></td>
+      <td><span class="sk sk-l">Latente</span></td>
+      <td class="td-j">Pregunta sobre el colonialismo interno: las jerarquías y exclusiones que reproducimos dentro de nuestros propios equipos y comunidades de práctica.</td>
+    </tr>
+    <tr id="row-108" 
+        data-foro="F3" 
+        data-catd="eco" 
+        data-cate="pra"
+        data-sk="persistente">
+      <td class="td-num">107</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo influir en las políticas públicas para reducir las brechas sociales desde el cine comunitario?</td>
+      <td><span class="pill td-eco">Ecosistema y sostenibilidad</span></td>
+      <td><span class="pill te-pra">Prácticas, acción</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(8)" title="Ir a fila 8">#8</button> <button class="rel-chip" onclick="scrollToRow(16)" title="Ir a fila 16">#16</button> <button class="rel-chip" onclick="scrollToRow(17)" title="Ir a fila 17">#17</button> <button class="rel-chip" onclick="scrollToRow(24)" title="Ir a fila 24">#24</button> <button class="rel-chip" onclick="scrollToRow(25)" title="Ir a fila 25">#25</button> <button class="rel-chip" onclick="scrollToRow(69)" title="Ir a fila 69">#69</button> <button class="rel-chip" onclick="scrollToRow(71)" title="Ir a fila 71">#71</button> <button class="rel-chip" onclick="scrollToRow(89)" title="Ir a fila 89">#89</button> <button class="rel-chip" onclick="scrollToRow(97)" title="Ir a fila 97">#97</button> <button class="rel-chip" onclick="scrollToRow(98)" title="Ir a fila 98">#98</button> <button class="rel-chip" onclick="scrollToRow(99)" title="Ir a fila 99">#99</button></td>
+      <td><span class="sk sk-p">Persistente</span></td>
+      <td class="td-j">Pregunta sobre la capacidad de incidencia política del campo: cómo el cine comunitario puede contribuir a cambios estructurales y no solo simbólicos.</td>
+    </tr>
+    <tr id="row-109" 
+        data-foro="F3" 
+        data-catd="dud" 
+        data-cate="ima"
+        data-sk="aislada">
+      <td class="td-num">108</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo redefinir el éxito en el cine comunitario?</td>
+      <td><span class="pill td-dud">Duda / inclasificable</span></td>
+      <td><span class="pill te-ima">Imaginación o futuros</span></td>
+      <td class="td-rel"><span class="rel-empty">—</span></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Pregunta que desafía los parámetros dominantes de éxito sin ofrecer una respuesta única. Toca la evaluación, el poder y la identidad del campo a la vez.</td>
+    </tr>
+    <tr id="row-110" 
+        data-foro="F3" 
+        data-catd="nar" 
+        data-cate="ima"
+        data-sk="aislada">
+      <td class="td-num">109</td>
+      <td><span class="fb f3">Foro III</span></td>
+      <td class="td-q">¿Cómo redefinir el éxito en el cine comunitario?</td>
+      <td><span class="pill td-nar">Narrativas y representación</span></td>
+      <td><span class="pill te-ima">Imaginación o futuros</span></td>
+      <td class="td-rel"><button class="rel-chip" onclick="scrollToRow(77)" title="Ir a fila 77">#77</button></td>
+      <td><span class="sk sk-a">Aislada</span></td>
+      <td class="td-j">Pregunta que desafía los parámetros dominantes de éxito sin ofrecer una respuesta única. Toca la evaluación, el poder y la identidad del campo a la vez.</td>
+    </tr>  </tbody>
+</table>
+</div>
+
+<script>
+  let filtros = { foro: 'todos', sk: 'todos', catd: 'todos', cate: 'todos' };
+
+  function fil(tipo, valor, btn) {
+    filtros[tipo] = valor;
+    // Desactivar botones del mismo grupo
+    const grupos = {
+      foro: ['Todos','I · Brasil 2022','II · México 2023','III · Colombia 2024'],
+      sk:   ['Todas','Persistentes','Latentes','Aisladas'],
+      catd: ['Todas','Narrativas','Distribución','Impacto','Ecosistema','Comunidades','Poder','Duda'],
+      cate: ['Todas','Prácticas','Identidad','Autocrítica','Contrahegemónicas','Relacionales','Imaginación'],
+    };
+    document.querySelectorAll('.btn').forEach(b => {
+      if (grupos[tipo].includes(b.textContent.trim())) b.classList.remove('on');
+    });
+    btn.classList.add('on');
+    aplicar();
+  }
+
+  function aplicar() {
+    const filas = document.querySelectorAll('#tbl tbody tr');
+    let n = 0;
+    filas.forEach(f => {
+      const ok =
+        (filtros.foro === 'todos' || f.dataset.foro  === filtros.foro) &&
+        (filtros.sk   === 'todos' || f.dataset.sk    === filtros.sk)   &&
+        (filtros.catd === 'todos' || f.dataset.catd  === filtros.catd) &&
+        (filtros.cate === 'todos' || f.dataset.cate  === filtros.cate);
+      f.classList.toggle('hide', !ok);
+      if (ok) n++;
+    });
+    document.getElementById('cnt').textContent = n + ' preguntas';
+  }
+
+  function scrollToRow(rowId) {
+    // Quitar highlights anteriores
+    document.querySelectorAll('tr.highlighted').forEach(r => r.classList.remove('highlighted'));
+    const target = document.getElementById('row-' + rowId);
+    if (target) {
+      // Si está oculta por filtros, mostrar brevemente
+      const wasHidden = target.classList.contains('hide');
+      if (wasHidden) {
+        // Limpiar filtros temporalmente para poder ver la fila
+        target.classList.remove('hide');
+      }
+      target.classList.add('highlighted');
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => target.classList.remove('highlighted'), 2500);
+      if (wasHidden) setTimeout(() => { if (!matchesFiltros(target)) target.classList.add('hide'); }, 2600);
+    }
+  }
+
+  function matchesFiltros(f) {
+    return (filtros.foro === 'todos' || f.dataset.foro === filtros.foro) &&
+           (filtros.sk   === 'todos' || f.dataset.sk   === filtros.sk)  &&
+           (filtros.catd === 'todos' || f.dataset.catd === filtros.catd) &&
+           (filtros.cate === 'todos' || f.dataset.cate === filtros.cate);
+  }
+</script>
+</body>
+</html>
