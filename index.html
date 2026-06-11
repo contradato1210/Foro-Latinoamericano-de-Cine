@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preguntas · Foros Latinoamericanos de Cine e Impacto Social</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --negro: #0f0f0f;
+    --blanco: #f7f5f0;
+    --gris: #888;
+    --cat1: #7C3AED;
+    --cat2: #0F766E;
+    --cat3: #C2410C;
+    --cat4: #1D4ED8;
+    --cat5: #B91C1C;
+    --cat6: #92400E;
+    --cat7: #374151;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: var(--negro);
+    color: var(--blanco);
+    padding: 2.5rem 1.5rem 5rem;
+  }
+
+  header {
+    max-width: 1300px;
+    margin: 0 auto 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #2a2a2a;
+  }
+
+  .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #E8B84B;
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .leyenda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    margin-top: 1.2rem;
+  }
+
+  .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.28rem 0.65rem;
+    border-radius: 2px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .t1 { background: var(--cat1); }
+  .t2 { background: var(--cat2); }
+  .t3 { background: var(--cat3); }
+  .t4 { background: var(--cat4); }
+  .t5 { background: var(--cat5); }
+  .t6 { background: var(--cat6); }
+  .t7 { background: var(--cat7); }
+
+  .controles {
+    max-width: 1300px;
+    margin: 0 auto 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: center;
+  }
+
+  .ctrl-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #555;
+    margin-right: 0.3rem;
+  }
+
+  .sep { width: 1px; height: 18px; background: #333; margin: 0 0.4rem; }
+
+  .btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.32rem 0.75rem;
+    border: 1px solid #333;
+    background: transparent;
+    color: #777;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+
+  .btn:hover, .btn.on {
+    background: var(--blanco);
+    color: var(--negro);
+    border-color: var(--blanco);
+  }
+
+  .contador {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: #444;
+    margin-left: auto;
+  }
+
+  .wrap {
+    max-width: 1300px;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+
+  thead tr { border-bottom: 1px solid #333; }
+
+  th {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #555;
+    text-align: left;
+    padding: 0.7rem 0.9rem;
+    white-space: nowrap;
+  }
+
+  th:nth-child(1) { width: 3%; }
+  th:nth-child(2) { width: 6%; }
+  th:nth-child(3) { width: 44%; }
+  th:nth-child(4) { width: 21%; }
+  th:nth-child(5) { width: 26%; }
+
+  tbody tr {
+    border-bottom: 1px solid #1c1c1c;
+    transition: background 0.1s;
+  }
+  tbody tr:hover { background: #161616; }
+
+  td { padding: 0.9rem; vertical-align: top; line-height: 1.55; }
+
+  td:first-child {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    color: #444;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .fb {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 700;
+    padding: 0.18rem 0.5rem;
+    border-radius: 2px;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .f1 { background: #1c1800; color: #E8B84B; border: 1px solid #4a3b0044; }
+  .f2 { background: #001a1a; color: #4ecdc4; border: 1px solid #4ecdc433; }
+  .f3 { background: #130e1f; color: #a78bfa; border: 1px solid #a78bfa33; }
+
+  td.q { color: var(--blanco); }
+
+  td.j {
+    color: #888;
+    font-size: 0.8rem;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .pill {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.57rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.22rem 0.55rem;
+    border-radius: 2px;
+    font-weight: 700;
+    color: #fff;
+    white-space: normal;
+    line-height: 1.7;
+  }
+
+  tr.hide { display: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Sistematización · I, II y III Foro</div>
+  <h1>Preguntas de los Foros Latinoamericanos<br>de Cine e Impacto Social</h1>
+  <div class="leyenda">
+    <span class="tag t1">Narrativas y representación</span>
+    <span class="tag t2">Distribución y/o circulación</span>
+    <span class="tag t3">Impacto y evaluación</span>
+    <span class="tag t4">Ecosistema y sostenibilidad</span>
+    <span class="tag t5">Comunidades, ética y cuidado</span>
+    <span class="tag t6">Poder y decolonialidad</span>
+    <span class="tag t7">Duda / inclasificable</span>
+  </div>
+</header>
+
+<div class="controles">
+  <span class="ctrl-label">Foro</span>
+  <button class="btn on" onclick="filtrar('foro','todos',this)">Todos</button>
+  <button class="btn" onclick="filtrar('foro','F1',this)">I · Brasil 2022</button>
+  <button class="btn" onclick="filtrar('foro','F2',this)">II · México 2023</button>
+  <button class="btn" onclick="filtrar('foro','F3',this)">III · Colombia 2024</button>
+  <div class="sep"></div>
+  <span class="ctrl-label">Categoría</span>
+  <button class="btn on" onclick="filtrar('cat','todos',this)">Todas</button>
+  <button class="btn" onclick="filtrar('cat','c1',this)">Narrativas</button>
+  <button class="btn" onclick="filtrar('cat','c2',this)">Distribución</button>
+  <button class="btn" onclick="filtrar('cat','c3',this)">Impacto</button>
+  <button class="btn" onclick="filtrar('cat','c4',this)">Ecosistema</button>
+  <button class="btn" onclick="filtrar('cat','c5',this)">Cuidado</button>
+  <button class="btn" onclick="filtrar('cat','c6',this)">Decolonial</button>
+  <button class="btn" onclick="filtrar('cat','c7',this)">Duda</button>
+  <span class="contador" id="cnt">91 preguntas</span>
+</div>
+
+<div class="wrap">
+<table id="tbl">
+<thead>
+  <tr>
+    <th>#</th><th>Foro</th><th>Pregunta</th><th>Categoría</th><th>Justificación</th>
+  </tr>
+</thead>
+<tbody>
+
+<!-- FORO 1 -->
+<tr data-foro="F1" data-cat="c4">
+  <td>1</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Qué hace un productor de impacto y qué debería tener en cuenta?</td>
+  <td><span class="pill t4">Ecosistema y sostenibilidad</span></td>
+  <td class="j">Pregunta fundacional sobre el rol y la formación del campo. Interroga quién sostiene este trabajo y qué condiciones necesita.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c1">
+  <td>2</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿De dónde nacen nuestras historias y dónde deberían existir?</td>
+  <td><span class="pill t1">Narrativas y representación</span></td>
+  <td class="j">Interroga el origen territorial y cultural de las historias y el lugar donde deberían vivir y circular.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c4">
+  <td>3</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿A qué desafíos nos estamos enfrentando como productores de impacto?</td>
+  <td><span class="pill t4">Ecosistema y sostenibilidad</span></td>
+  <td class="j">Pregunta diagnóstica sobre los obstáculos estructurales, metodológicos y relacionales del campo.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c1">
+  <td>4</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Qué tan importante es definir los mensajes y las estrategias narrativas para el cambio social?</td>
+  <td><span class="pill t1">Narrativas y representación</span></td>
+  <td class="j">Pregunta sobre la relación entre intencionalidad narrativa y eficacia del cambio social. Toca el diseño de mensajes y su vínculo con audiencias.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c3">
+  <td>5</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cómo evaluamos el impacto en las audiencias?</td>
+  <td><span class="pill t3">Impacto y evaluación</span></td>
+  <td class="j">Pregunta directa sobre metodologías de medición del cambio producido por las películas en quienes las ven.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c1">
+  <td>6</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cómo crear una comunicación más asertiva con las audiencias?</td>
+  <td><span class="pill t1">Narrativas y representación</span></td>
+  <td class="j">Pregunta sobre cómo los mensajes de cambio social llegan efectivamente a públicos diversos, conectando diseño narrativo y recepción.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c4">
+  <td>7</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cómo nos articulamos con la academia?</td>
+  <td><span class="pill t4">Ecosistema y sostenibilidad</span></td>
+  <td class="j">Pregunta sobre los puentes entre el campo del impacto y la investigación académica como parte del ecosistema.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c3">
+  <td>8</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cuál es el impacto del trabajo que se está realizando?</td>
+  <td><span class="pill t3">Impacto y evaluación</span></td>
+  <td class="j">Pregunta sobre la capacidad de demostrar resultados más allá de la intuición o los datos cuantitativos básicos.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c1">
+  <td>9</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cuánto de lo que se comunica es entendido por el público?</td>
+  <td><span class="pill t1">Narrativas y representación</span></td>
+  <td class="j">Interroga la brecha entre lo que se dice y lo que se recibe. Cuestiona la accesibilidad real de los mensajes de cambio social.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c7">
+  <td>10</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cómo se puede hablar de democracia con la violencia y las desigualdades que existen?</td>
+  <td><span class="pill t7">Duda / inclasificable</span></td>
+  <td class="j">Tensión sin resolución clara: toca el poder estructural, las condiciones narrativas y la ética del campo a la vez. No cabe limpiamente en una sola categoría.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c3">
+  <td>11</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cómo elaborar objetivos de impacto consistentes, articulados con la sociedad civil y conectados con el contexto sociopolítico?</td>
+  <td><span class="pill t3">Impacto y evaluación</span></td>
+  <td class="j">Pregunta metodológica sobre cómo construir objetivos de impacto coherentes con el contexto y con los actores sociales implicados.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c5">
+  <td>12</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Qué acuerdos son necesarios para garantizar una distribución centrada en el impacto social?</td>
+  <td><span class="pill t5">Comunidades, ética y cuidado</span></td>
+  <td class="j">Pregunta sobre los pactos éticos y operativos que hacen posible una distribución que respete a las comunidades protagonistas.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c3">
+  <td>13</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cómo demostrar los resultados del trabajo de impacto más allá de las cifras?</td>
+  <td><span class="pill t3">Impacto y evaluación</span></td>
+  <td class="j">Pregunta clave sobre los límites de la medición cuantitativa y la necesidad de metodologías cualitativas propias.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c4">
+  <td>14</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿El ecosistema puede partir de la unión de diferentes temáticas más que de un estilo de películas?</td>
+  <td><span class="pill t4">Ecosistema y sostenibilidad</span></td>
+  <td class="j">Pregunta sobre qué une al campo: si es un género cinematográfico o una apuesta política común que trasciende los formatos.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c4">
+  <td>15</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cómo se tejen las redes a través del impacto?</td>
+  <td><span class="pill t4">Ecosistema y sostenibilidad</span></td>
+  <td class="j">Pregunta sobre los mecanismos de articulación entre organizaciones, cineastas y comunidades que sostienen el ecosistema.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c4">
+  <td>16</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cómo crear una cultura de financiación de campañas de impacto en circuitos no comerciales?</td>
+  <td><span class="pill t4">Ecosistema y sostenibilidad</span></td>
+  <td class="j">Pregunta sobre modelos de financiación que hagan sostenible el trabajo de impacto sin depender de los circuitos comerciales.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c2">
+  <td>17</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cómo llegar al público sin los altos gastos en medios de comunicación que se practican en los modelos comerciales tradicionales?</td>
+  <td><span class="pill t2">Distribución y/o circulación</span></td>
+  <td class="j">Pregunta sobre estrategias de circulación alternativas que no dependan de los presupuestos y lógicas del marketing comercial.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c3">
+  <td>18</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cómo puede repercutir el impacto social en la cadena del audiovisual?</td>
+  <td><span class="pill t3">Impacto y evaluación</span></td>
+  <td class="j">Pregunta sobre cómo el impacto social incide no solo en comunidades sino en la propia industria y sus modelos de producción y distribución.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c7">
+  <td>19</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Queremos cambiar el mundo, contar historias o queremos trabajar?</td>
+  <td><span class="pill t7">Duda / inclasificable</span></td>
+  <td class="j">Una de las tensiones más honestas de los tres foros. No tiene respuesta y no debería tenerla: es una pregunta que sostiene la incomodidad necesaria del campo.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c5">
+  <td>20</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cuál es mi equipo y con quién trabajo?</td>
+  <td><span class="pill t5">Comunidades, ética y cuidado</span></td>
+  <td class="j">Pregunta sobre la composición y los valores del equipo como condición ética del trabajo de impacto, no solo como decisión técnica.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c3">
+  <td>21</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Qué formas de medir el impacto cuantitativa y cualitativamente funcionan y cuáles articulan las dimensiones micro y macro?</td>
+  <td><span class="pill t3">Impacto y evaluación</span></td>
+  <td class="j">Pregunta metodológica sobre cómo combinar distintas formas de medir el cambio sin reducir la complejidad del proceso.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c4">
+  <td>22</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cómo financiar las campañas de impacto?</td>
+  <td><span class="pill t4">Ecosistema y sostenibilidad</span></td>
+  <td class="j">Pregunta sobre los modelos de financiación que hacen sostenible el trabajo de impacto sin comprometer su autonomía política.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c4">
+  <td>23</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cómo pueden colaborar las grandes plataformas, fondos y convocatorias con la cooperación latinoamericana?</td>
+  <td><span class="pill t4">Ecosistema y sostenibilidad</span></td>
+  <td class="j">Pregunta sobre la relación entre el campo y los grandes financiadores internacionales, y cómo esa relación puede ser equitativa.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c5">
+  <td>24</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cómo velar por la horizontalidad en los roles y procesos inclusivos al trabajar con comunidades?</td>
+  <td><span class="pill t5">Comunidades, ética y cuidado</span></td>
+  <td class="j">Pregunta sobre las condiciones de igualdad y participación real dentro de los procesos de producción con comunidades.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c5">
+  <td>25</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cómo pensar en la seguridad desde el momento en que se filma?</td>
+  <td><span class="pill t5">Comunidades, ética y cuidado</span></td>
+  <td class="j">Pregunta sobre la protección de quienes participan en las producciones como obligación ética desde el inicio del proceso.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c5">
+  <td>26</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cómo priorizar la voluntad de los participantes en la pantalla?</td>
+  <td><span class="pill t5">Comunidades, ética y cuidado</span></td>
+  <td class="j">Pregunta sobre el consentimiento y la agencia de las personas filmadas como principio ético irrenunciable.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c2">
+  <td>27</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cómo pensar en la accesibilidad al contenido?</td>
+  <td><span class="pill t2">Distribución y/o circulación</span></td>
+  <td class="j">Pregunta sobre cómo el contenido llega a públicos que no tienen acceso a los circuitos tradicionales de exhibición.</td>
+</tr>
+
+<tr data-foro="F1" data-cat="c2">
+  <td>28</td><td><span class="fb f1">Foro I</span></td>
+  <td class="q">¿Cómo alinear la distribución con los objetivos de impacto social?</td>
+  <td><span class="pill t2">Distribución y/o circulación</span></td>
+  <td class="j">Pregunta sobre la coherencia entre la estrategia de circulación de una película y los cambios que busca producir.</td>
+</tr>
+
+<!-- FORO 2 -->
+<tr data-foro="F2" data-cat="c1">
+  <td>29</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿De dónde nacen nuestras historias e imágenes?</td>
+  <td><span class="pill t1">Narrativas y representación</span></td>
+  <td class="j">Pregunta sobre el origen territorial, cultural y político de las historias. Quién las genera y desde qué condiciones materiales y simbólicas.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c6">
+  <td>30</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Cuál es nuestro sentido de pertenencia?</td>
+  <td><span class="pill t6">Poder y decolonialidad</span></td>
+  <td class="j">Pregunta sobre la identidad colectiva del campo en un territorio históricamente disputado. Quiénes somos y desde qué lugar hablamos.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c1">
+  <td>31</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Quién hace el cine del pueblo?</td>
+  <td><span class="pill t1">Narrativas y representación</span></td>
+  <td class="j">Pregunta sobre la autoría y la legitimidad: quién tiene el derecho y la capacidad de contar las historias de las comunidades populares.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c6">
+  <td>32</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Qué busca la curaduría sobre el cine indígena?</td>
+  <td><span class="pill t6">Poder y decolonialidad</span></td>
+  <td class="j">Pregunta sobre quién define qué es el cine indígena, con qué criterios se selecciona y qué intereses representa esa selección.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c6">
+  <td>33</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Qué es Latinoamérica?</td>
+  <td><span class="pill t6">Poder y decolonialidad</span></td>
+  <td class="j">Pregunta sobre los límites y la construcción política de la categoría. Cuestiona si sirve o si reproduce una homogeneización que borra diferencias.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c7">
+  <td>34</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Para qué hacemos lo que hacemos?</td>
+  <td><span class="pill t7">Duda / inclasificable</span></td>
+  <td class="j">Pregunta radical sobre el sentido del campo. Toca la motivación, la identidad y la finalidad a la vez. No tiene una respuesta única ni una categoría que la contenga sola.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c6">
+  <td>35</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Desde qué enunciación parto?</td>
+  <td><span class="pill t6">Poder y decolonialidad</span></td>
+  <td class="j">Pregunta sobre el lugar de habla: desde qué posición, cuerpo y territorio hablo, y cómo eso determina lo que puedo decir y lo que no.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c6">
+  <td>36</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Qué pertenencia quiero proponer?</td>
+  <td><span class="pill t6">Poder y decolonialidad</span></td>
+  <td class="j">Pregunta sobre la construcción de identidad colectiva a través del cine: qué comunidad imaginamos y hacia quién nos dirigimos.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c5">
+  <td>37</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Con quién estamos?</td>
+  <td><span class="pill t5">Comunidades, ética y cuidado</span></td>
+  <td class="j">Pregunta sobre el vínculo con las comunidades: quiénes son nuestros aliados reales y cómo se construye esa relación éticamente.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c7">
+  <td>38</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿En qué suelo estamos?</td>
+  <td><span class="pill t7">Duda / inclasificable</span></td>
+  <td class="j">Pregunta sobre el territorio como condición del trabajo. Conecta lo geográfico, lo político y lo espiritual de una manera que resiste una sola categoría.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c7">
+  <td>39</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Para qué hacer cine?</td>
+  <td><span class="pill t7">Duda / inclasificable</span></td>
+  <td class="j">Pregunta raíz que el campo no ha cerrado ni debería cerrar. Toca la identidad, el poder, las narrativas y el impacto simultáneamente.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c7">
+  <td>40</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Ustedes quiénes son, como mexicanxs?</td>
+  <td><span class="pill t7">Duda / inclasificable</span></td>
+  <td class="j">Pregunta sobre la identidad nacional como categoría problemática. Cuestiona si las identidades colectivas dadas sirven o limitan el trabajo del campo.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c7">
+  <td>41</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Por qué se le da un lugar de impacto al documental y no a la ficción? ¿La ficción también transforma?</td>
+  <td><span class="pill t7">Duda / inclasificable</span></td>
+  <td class="j">Tensión sin resolución clara dentro del campo: cuestiona los supuestos sobre qué formatos producen impacto y por qué.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c5">
+  <td>42</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Con quiénes dialogan nuestras historias?</td>
+  <td><span class="pill t5">Comunidades, ética y cuidado</span></td>
+  <td class="j">Pregunta sobre a quién nos dirigimos realmente y cómo se construye ese diálogo con comunidades protagonistas y audiencias.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c5">
+  <td>43</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Cómo contrarrestar los riesgos de contar estas historias?</td>
+  <td><span class="pill t5">Comunidades, ética y cuidado</span></td>
+  <td class="j">Pregunta sobre la seguridad de quienes filman y de quienes son filmados, especialmente en contextos de persecución política o social.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c5">
+  <td>44</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Cómo se crea un protocolo de seguridad para salvaguardar personas en contextos de riesgo?</td>
+  <td><span class="pill t5">Comunidades, ética y cuidado</span></td>
+  <td class="j">Pregunta práctica sobre cómo construir protocolos que protejan a participantes en producciones en entornos de violencia o censura.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c2">
+  <td>45</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Cómo exhibir desde la creación de redes horizontales en vez de segmentadas?</td>
+  <td><span class="pill t2">Distribución y/o circulación</span></td>
+  <td class="j">Pregunta sobre modelos de exhibición que construyan redes colectivas y equitativas en lugar de replicar la lógica segmentada del mercado.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c2">
+  <td>46</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Cómo crear ecosistemas fluidos en los modelos de distribución?</td>
+  <td><span class="pill t2">Distribución y/o circulación</span></td>
+  <td class="j">Pregunta sobre cómo construir modelos de distribución que respondan a la diversidad de contextos latinoamericanos sin imponer una sola lógica.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c6">
+  <td>47</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Cómo activar, pensar y actuar el cine no en relación con la industria sino con la sociedad?</td>
+  <td><span class="pill t6">Poder y decolonialidad</span></td>
+  <td class="j">Pregunta que desplaza el centro de referencia: de la industria audiovisual hacia las comunidades y la sociedad civil como interlocutores principales.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c4">
+  <td>48</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Cuáles son las fortalezas de Latinoamérica en el cine de impacto?</td>
+  <td><span class="pill t4">Ecosistema y sostenibilidad</span></td>
+  <td class="j">Pregunta sobre los recursos, saberes y tradiciones propias del campo latinoamericano que lo distinguen de modelos externos.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c6">
+  <td>49</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Quiénes están al centro de la distribución?</td>
+  <td><span class="pill t6">Poder y decolonialidad</span></td>
+  <td class="j">Pregunta sobre las relaciones de poder en los modelos de distribución: quién decide, quién se beneficia y quién queda fuera.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c7">
+  <td>50</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Rol de los festivales: viejo o nuevo mundo?</td>
+  <td><span class="pill t7">Duda / inclasificable</span></td>
+  <td class="j">Tensión sin resolución: los festivales son a la vez mecanismo de validación hegemónica y posible espacio de circulación alternativa. El campo no ha cerrado esta pregunta.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c2">
+  <td>51</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Qué condiciones son necesarias para que existan espectadorxs?</td>
+  <td><span class="pill t2">Distribución y/o circulación</span></td>
+  <td class="j">Pregunta sobre qué hace falta para que las comunidades destinatarias puedan realmente acceder y encontrarse con las películas.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c3">
+  <td>52</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Cómo es posible medir las evaluaciones de impacto?</td>
+  <td><span class="pill t3">Impacto y evaluación</span></td>
+  <td class="j">Pregunta sobre la viabilidad y los límites de los sistemas de medición del impacto en contextos latinoamericanos diversos.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c3">
+  <td>53</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Qué quiero cambiar? ¿Para quién? ¿Cuándo? ¿Hacia dónde?</td>
+  <td><span class="pill t3">Impacto y evaluación</span></td>
+  <td class="j">Preguntas orientadoras del diseño de impacto. Definen la intencionalidad y la dirección antes de elegir cualquier metodología de evaluación.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c3">
+  <td>54</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Cómo monitorear el progreso de un tema a lo largo del tiempo?</td>
+  <td><span class="pill t3">Impacto y evaluación</span></td>
+  <td class="j">Pregunta sobre el seguimiento longitudinal del cambio, más allá de la medición puntual después de un estreno o campaña.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c3">
+  <td>55</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Cómo dar seguimiento después de evaluar?</td>
+  <td><span class="pill t3">Impacto y evaluación</span></td>
+  <td class="j">Pregunta sobre qué ocurre con los datos y aprendizajes de la evaluación: cómo se usan, se comparten y se transforman en acción.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c3">
+  <td>56</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">Después de evaluar, ¿qué hacemos con eso?</td>
+  <td><span class="pill t3">Impacto y evaluación</span></td>
+  <td class="j">Pregunta sobre el uso real de los resultados de la evaluación. El campo evalúa pero no siempre sabe cómo transformar eso en aprendizaje colectivo.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c3">
+  <td>57</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Cómo descolonizar el modelo de evaluación respondiendo a nuestros propios contextos y procesos?</td>
+  <td><span class="pill t3">Impacto y evaluación</span></td>
+  <td class="j">Pregunta sobre la necesidad de construir metodologías de evaluación propias que no repliquen los indicadores y lógicas del norte global.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c6">
+  <td>58</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Qué entendemos por impacto? ¿Qué es exhibición? ¿Qué es distribución?</td>
+  <td><span class="pill t6">Poder y decolonialidad</span></td>
+  <td class="j">Preguntas sobre el vocabulario del campo. Cuestiona si los conceptos que usamos vienen de lógicas externas y si necesitamos definiciones propias.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c6">
+  <td>59</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Qué lenguajes estamos usando? ¿Qué palabras debemos abandonar?</td>
+  <td><span class="pill t6">Poder y decolonialidad</span></td>
+  <td class="j">Pregunta sobre el poder del vocabulario: qué términos reproducen lógicas hegemónicas y cuáles necesitamos construir desde nuestras propias prácticas.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c4">
+  <td>60</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Cómo hacer para reforzar mutuamente nuestras narrativas entre organizaciones?</td>
+  <td><span class="pill t4">Ecosistema y sostenibilidad</span></td>
+  <td class="j">Pregunta sobre la colaboración narrativa entre organizaciones del campo para amplificar el alcance e impacto de los mensajes comunes.</td>
+</tr>
+
+<tr data-foro="F2" data-cat="c4">
+  <td>61</td><td><span class="fb f2">Foro II</span></td>
+  <td class="q">¿Cuál es el plan de crecimiento para centrarse en lo importante de la práctica?</td>
+  <td><span class="pill t4">Ecosistema y sostenibilidad</span></td>
+  <td class="j">Pregunta sobre la sostenibilidad estratégica de las organizaciones: cómo crecer sin perder el foco en la misión y los valores del campo.</td>
+</tr>
+
+<!-- FORO 3 -->
+<tr data-foro="F3" data-cat="c6">
+  <td>62</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo nos disputamos el poder narrativo al hacer cine para representarnos a nosotres mismes, sin reproducir las prácticas del poder hegemónico que todes llevamos dentro?</td>
+  <td><span class="pill t6">Poder y decolonialidad</span></td>
+  <td class="j">Pregunta sobre la contradicción de querer descolonizar la representación usando herramientas y lógicas que también hemos internalizado.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c4">
+  <td>63</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo podemos pasar de ser muchos cines pequeños y aislados que le hablan a las mismas personas a ser un gran proceso colectivo que le hace frente al poder hegemónico?</td>
+  <td><span class="pill t4">Ecosistema y sostenibilidad</span></td>
+  <td class="j">Pregunta sobre la articulación del campo como movimiento colectivo con mayor capacidad de incidencia, más allá de los proyectos individuales.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c1">
+  <td>64</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo se conectan las heridas de la comunidad con la historia?</td>
+  <td><span class="pill t1">Narrativas y representación</span></td>
+  <td class="j">Pregunta sobre la relación entre memoria histórica, trauma colectivo y narración cinematográfica como forma de dar cuenta de lo vivido.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c1">
+  <td>65</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo el cine acompaña las heridas? ¿Quieren esas heridas ser reparadas por el cine?</td>
+  <td><span class="pill t1">Narrativas y representación</span></td>
+  <td class="j">Pregunta que cuestiona el alcance del cine como herramienta de sanación e introduce el punto de vista de las comunidades sobre su propio dolor.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c6">
+  <td>66</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cuáles son los mecanismos de validación del cine? ¿Festivales, salas, fondos, políticas públicas, audiencia, taquilla, técnica?</td>
+  <td><span class="pill t6">Poder y decolonialidad</span></td>
+  <td class="j">Pregunta sobre qué instituciones y criterios definen qué cine vale y cuáles reproducen o cuestionan el poder hegemónico.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c6">
+  <td>67</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo hacer un cine decolonial con herramientas coloniales?</td>
+  <td><span class="pill t6">Poder y decolonialidad</span></td>
+  <td class="j">Una de las tensiones más profundas del campo: la contradicción entre el deseo decolonial y los instrumentos, formatos y financiamientos que vienen del sistema que se quiere desmontar.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c6">
+  <td>68</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo crear nuevos modelos que permitan decolonizar el cine tradicional a partir del cine comunitario?</td>
+  <td><span class="pill t6">Poder y decolonialidad</span></td>
+  <td class="j">Pregunta propositiva sobre cómo el cine comunitario puede construir alternativas reales a los modelos hegemónicos de producción y distribución.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c6">
+  <td>69</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Son los modos de producción la clave para la descolonización?</td>
+  <td><span class="pill t6">Poder y decolonialidad</span></td>
+  <td class="j">Pregunta sobre si el cambio debe ocurrir en los procesos de producción o también en otros niveles: narrativo, político y económico.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c2">
+  <td>70</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Es necesaria una gran estructura para tener una experiencia de cine?</td>
+  <td><span class="pill t2">Distribución y/o circulación</span></td>
+  <td class="j">Pregunta sobre los modelos mínimos y alternativos de exhibición. Cuestiona la dependencia de infraestructura industrial para que el cine llegue a las comunidades.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c2">
+  <td>71</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo crear un mapeo de experiencias replicables de formación de audiencias?</td>
+  <td><span class="pill t2">Distribución y/o circulación</span></td>
+  <td class="j">Pregunta sobre cómo sistematizar y replicar experiencias de construcción de públicos que funcionen desde la lógica comunitaria y no comercial.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c2">
+  <td>72</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo tener presente a la audiencia principal en todas las etapas del ecosistema audiovisual?</td>
+  <td><span class="pill t2">Distribución y/o circulación</span></td>
+  <td class="j">Pregunta sobre cómo integrar a las comunidades destinatarias desde la producción, no solo en la distribución o exhibición.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c2">
+  <td>73</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo se puede diseñar una experiencia cinematográfica sostenible que interpele a las audiencias?</td>
+  <td><span class="pill t2">Distribución y/o circulación</span></td>
+  <td class="j">Pregunta sobre cómo construir experiencias de cine que sostengan el diálogo con las audiencias más allá de la proyección puntual.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c4">
+  <td>74</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo formar creadores capaces de desarrollar proyectos cinematográficos conscientes de su potencial de impacto?</td>
+  <td><span class="pill t4">Ecosistema y sostenibilidad</span></td>
+  <td class="j">Pregunta sobre la formación como condición de sostenibilidad del campo: cómo construir una nueva generación con conciencia política y metodológica.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c3">
+  <td>75</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo aterrizar los modelos de evaluación respondiendo a las diversidades del ecosistema y teniendo en cuenta el cuidado, la apropiación y la sostenibilidad?</td>
+  <td><span class="pill t3">Impacto y evaluación</span></td>
+  <td class="j">Pregunta sobre cómo adaptar los modelos de evaluación a la diversidad de contextos latinoamericanos sin perder los principios éticos del campo.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c3">
+  <td>76</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo establecer sistemas diversos de evaluación para entender, reconocer y comunicar los diferentes grados de impacto en los corazones de los públicos?</td>
+  <td><span class="pill t3">Impacto y evaluación</span></td>
+  <td class="j">Pregunta sobre cómo construir sistemas que den cuenta de la profundidad del cambio, incluyendo dimensiones subjetivas y emocionales.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c3">
+  <td>77</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo medir las transformaciones generadas durante los procesos de creación de las películas?</td>
+  <td><span class="pill t3">Impacto y evaluación</span></td>
+  <td class="j">Pregunta sobre la evaluación del proceso y no solo del resultado: el impacto ocurre también durante la producción, no solo después del estreno.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c3">
+  <td>78</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">Teniendo en cuenta lo que se quiere evaluar, ¿cómo cruzar la información entre quien plantea las preguntas y quien tiene las respuestas?</td>
+  <td><span class="pill t3">Impacto y evaluación</span></td>
+  <td class="j">Pregunta sobre la brecha entre quienes diseñan la evaluación y quienes la viven. Apunta a una evaluación más horizontal y participativa.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c3">
+  <td>79</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo acordar un catálogo de criterios para evaluar los impactos de un filme?</td>
+  <td><span class="pill t3">Impacto y evaluación</span></td>
+  <td class="j">Pregunta sobre la construcción colectiva de estándares compartidos de evaluación reconocidos por el campo latinoamericano.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c3">
+  <td>80</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo generamos y compartimos una metodología colectiva para evaluar procesos de impacto social?</td>
+  <td><span class="pill t3">Impacto y evaluación</span></td>
+  <td class="j">Pregunta sobre cómo el campo puede construir y compartir metodologías de evaluación propias, latinoamericanas y colectivas.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c4">
+  <td>81</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo crear y fortalecer políticas públicas que prioricen la distribución y circulación independiente?</td>
+  <td><span class="pill t4">Ecosistema y sostenibilidad</span></td>
+  <td class="j">Pregunta sobre incidencia política: cómo traducir los aprendizajes del campo en demandas concretas de política pública para el audiovisual.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c4">
+  <td>82</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo podemos tejer y fortalecer una red de apoyo y colaboración para el cine latinoamericano?</td>
+  <td><span class="pill t4">Ecosistema y sostenibilidad</span></td>
+  <td class="j">Pregunta sobre la construcción de redes de solidaridad y colaboración que sostengan el campo más allá de los encuentros presenciales.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c4">
+  <td>83</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">Después de tres ediciones del foro, ¿cómo se mantiene y articula esta red viva como una comunidad de práctica?</td>
+  <td><span class="pill t4">Ecosistema y sostenibilidad</span></td>
+  <td class="j">Pregunta sobre la sostenibilidad del propio foro y de la red que genera. Cómo pasar de encuentros periódicos a una comunidad activa y permanente.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c1">
+  <td>84</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Qué hacemos con esa herida que nos marcó los cuerpos?</td>
+  <td><span class="pill t1">Narrativas y representación</span></td>
+  <td class="j">Pregunta sobre cómo el cuerpo y la memoria del trauma colectivo se convierten en materia narrativa. La herida como punto de partida para contar y para sanar.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c2">
+  <td>85</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Sería mejor usar la palabra "circulación" en lugar de "distribución"?</td>
+  <td><span class="pill t2">Distribución y/o circulación</span></td>
+  <td class="j">Pregunta del Manifiesto de Distribución sobre si el vocabulario del campo reproduce sin querer la lógica industrial que quiere desmontar.</td>
+</tr>
+
+<!-- Preguntas adicionales del Foro 3 de los paneles -->
+<tr data-foro="F3" data-cat="c1">
+  <td>86</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo el cine lo que cambia es la forma en la que vemos el mundo?</td>
+  <td><span class="pill t1">Narrativas y representación</span></td>
+  <td class="j">Pregunta sobre el poder transformador del cine no como acción directa sino como modificación de la percepción y la mirada colectiva.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c5">
+  <td>87</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo filmar la ausencia de justicia?</td>
+  <td><span class="pill t5">Comunidades, ética y cuidado</span></td>
+  <td class="j">Pregunta ética y narrativa sobre cómo representar lo que no tiene imagen: la impunidad, el silencio y la violencia estructural sin revictimizar.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c5">
+  <td>88</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo generar relaciones de apoyo y respeto con las víctimas y los colectivos activistas?</td>
+  <td><span class="pill t5">Comunidades, ética y cuidado</span></td>
+  <td class="j">Pregunta sobre cómo construir vínculos duraderos y éticos con quienes protagonizan historias de lucha y dolor, más allá de la filmación.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c6">
+  <td>89</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo incidimos en los propios colectivos cuando replicamos violencias estructurales hacia adentro?</td>
+  <td><span class="pill t6">Poder y decolonialidad</span></td>
+  <td class="j">Pregunta sobre el colonialismo interno: las jerarquías y exclusiones que reproducimos dentro de nuestros propios equipos y comunidades de práctica.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c4">
+  <td>90</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo influir en las políticas públicas para reducir las brechas sociales desde el cine comunitario?</td>
+  <td><span class="pill t4">Ecosistema y sostenibilidad</span></td>
+  <td class="j">Pregunta sobre la capacidad de incidencia política del campo: cómo el cine comunitario puede contribuir a cambios estructurales y no solo simbólicos.</td>
+</tr>
+
+<tr data-foro="F3" data-cat="c7">
+  <td>91</td><td><span class="fb f3">Foro III</span></td>
+  <td class="q">¿Cómo redefinir el éxito en el cine comunitario?</td>
+  <td><span class="pill t7">Duda / inclasificable</span></td>
+  <td class="j">Pregunta que desafía los parámetros dominantes de éxito sin ofrecer una respuesta única. Toca la evaluación, el poder y la identidad del campo a la vez.</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+<script>
+  let filtroForo = 'todos';
+  let filtroCat = 'todos';
+
+  function filtrar(tipo, valor, btn) {
+    if (tipo === 'foro') {
+      filtroForo = valor;
+      document.querySelectorAll('.controles button').forEach(b => {
+        if (['todos','F1','F2','F3'].some(v => b.textContent.includes(v === 'todos' ? 'Todos' : v === 'F1' ? 'I ·' : v === 'F2' ? 'II ·' : 'III ·'))) {
+          b.classList.remove('on');
+        }
+      });
+    } else {
+      filtroCat = valor;
+      document.querySelectorAll('.controles button').forEach(b => {
+        if (['Todas','Narrativas','Distribución','Impacto','Ecosistema','Cuidado','Decolonial','Duda'].some(v => b.textContent === v)) {
+          b.classList.remove('on');
+        }
+      });
+    }
+    btn.classList.add('on');
+    aplicar();
+  }
+
+  function aplicar() {
+    const filas = document.querySelectorAll('#tbl tbody tr');
+    let n = 0;
+    filas.forEach(f => {
+      const okForo = filtroForo === 'todos' || f.dataset.foro === filtroForo;
+      const okCat  = filtroCat  === 'todos' || f.dataset.cat  === filtroCat;
+      if (okForo && okCat) { f.classList.remove('hide'); n++; }
+      else                  { f.classList.add('hide'); }
+    });
+    document.getElementById('cnt').textContent = n + ' preguntas';
+  }
+</script>
+</body>
+</html>
